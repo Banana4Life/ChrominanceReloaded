@@ -15,7 +15,7 @@ public class GameObjectPool : MonoBehaviour
     private void Awake()
     {
         objects = new List<GameObject>(initialSize);
-        if (preallocate)
+        if (preallocate && prefab)
         {
             GrowPool(initialSize);
         }
@@ -23,6 +23,10 @@ public class GameObjectPool : MonoBehaviour
 
     public GameObject Get()
     {
+        if (!prefab)
+        {
+            return null;
+        }
         int i;
         for (i = 0; i < objects.Count; i++)
         {

@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2ce7cf8cb30d0db87853c988e9f8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preallocate: 1
+  preallocate: 0
   prefab: {fileID: 0}
   initialSize: 30
   growBy: 30
