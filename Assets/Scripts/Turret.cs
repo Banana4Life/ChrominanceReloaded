@@ -1,17 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Turret : MonoBehaviour
 {
-    public Sprite turretHead;
+
+    public TurretVariant[] variants = new TurretVariant[4];
+    public int variant = 0;
+
+    private TurretVariant turretVariant;
+    
     public GameObject head;
     public GameObject projectile;
 
     public GameObject projectileContainer;
-
-    public float shootCooldown = 20;
 
     private float lastShot;
 
@@ -27,15 +32,17 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        turretVariant = variants[variant];
+        
         var headRenderer = head.GetComponentInChildren<SpriteRenderer>();
-        headRenderer.sprite = turretHead;
+        headRenderer.sprite = turretVariant.turretHead;
         head.transform.rotation = Quaternion.Euler(0, 0, headAngle);
         headAngle += Time.deltaTime * 50;
 
         lastShot -= Time.deltaTime * 50;
         if (lastShot <= 0)
         {
-            lastShot = shootCooldown;
+            lastShot = turretVariant.shootCooldown;
             Shoot();
         }
     }
@@ -44,5 +51,15 @@ public class Turret : MonoBehaviour
     {
         Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
     }
+
+}
+
+[Serializable]
+public class TurretVariant
+{
+    public String name;
+    public Sprite turretHead;
+    public float shootCooldown;
+    public float damage;
 
 }

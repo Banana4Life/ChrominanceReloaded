@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a5b4036addef4c286f5649a073904b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 0}
   Cam: {fileID: 0}
 --- !u!483693784 &1354323885
 TilemapRenderer:
@@ -756,10 +757,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 115faa6891080b285a93c8ed0a13bd8e,
         type: 3}
+    - target: {fileID: 7899023719165087263, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1896953407
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899023719165087263, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7899023719152111213, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
       propertyPath: m_Name
       value: sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899023719152111214, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899023719152111215, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1896953407
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899023719152111215, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b534a9901b37aa08eac00c60bb7ffa46, type: 3}

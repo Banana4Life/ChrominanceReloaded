@@ -107,7 +107,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4799856110ef450cb06fe76722fc371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretHead: {fileID: 21300000, guid: 6e0859152951a9f209e4a15110f2c85f, type: 3}
+  variants:
+  - turretHead: {fileID: 21300000, guid: 115faa6891080b285a93c8ed0a13bd8e, type: 3}
+    shootCooldown: 20
+    damage: 50
+  - turretHead: {fileID: 21300000, guid: 67f4401cfeab0f016826327ba68cd2b5, type: 3}
+    shootCooldown: 40
+    damage: 100
+  - turretHead: {fileID: 21300000, guid: 6e0859152951a9f209e4a15110f2c85f, type: 3}
+    shootCooldown: 30
+    damage: 10
+  - turretHead: {fileID: 21300000, guid: 2e594e8bfff4a5724834cd1e326e9da0, type: 3}
+    shootCooldown: 10
+    damage: 20
+  variant:
+    turretHead: {fileID: 0}
+    shootCooldown: 0
+    damage: 0
   head: {fileID: 786703651229517505}
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
     type: 3}
@@ -178,8 +194,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1896953407
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2e594e8bfff4a5724834cd1e326e9da0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -257,8 +273,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1896953407
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 34b482648bfb9b7df967fea37733b620, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

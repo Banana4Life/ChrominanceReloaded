@@ -38,9 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 2398013889
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Turrets
+    uniqueID: 2398013889
     locked: 0
