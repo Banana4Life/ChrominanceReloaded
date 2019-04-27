@@ -9,6 +9,7 @@ public abstract class Placer : MonoBehaviour
     
     protected GridController grid;
     private bool placeUponRelease;
+    private Vector2Int cellClicked;
 
     protected Placer(int mouseButton)
     {
@@ -20,16 +21,25 @@ public abstract class Placer : MonoBehaviour
         grid = GetComponent<GridController>();
     }
 
+    private Vector2Int GetCellPos()
+    {
+        return grid.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (placeUponRelease)
         {
-            if (Input.GetMouseButtonUp(mouseButton))
+            if (Input.GetMouseButtonUp(mouseButton))    
             {
-                var cellPos = grid.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
-                var obj = Spawn(cellPos);
-                grid.SetObjectAt(cellPos, obj);
+                var cellPos = GetCellPos();
+                if (cellPos == cellClicked)
+                {
+                    var obj = Spawn(cellPos);
+                    grid.SetObjectAt(cellPos, obj);
+                }
+
                 placeUponRelease = false;
             }
         }
@@ -37,7 +47,12 @@ public abstract class Placer : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(mouseButton))
             {
-                placeUponRelease = true;
+                var cellPos = GetCellPos();
+                if (!grid.HasObjectAt(cellPos))
+                {
+                    cellClicked = GetCellPos();
+                    placeUponRelease = true;
+                }
             }
         }
     }

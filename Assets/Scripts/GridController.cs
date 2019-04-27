@@ -63,18 +63,40 @@ public class GridController : MonoBehaviour
         return obj;
     }
 
+    public bool HasObjectAt(Vector2Int cell)
+    {
+        return GetObjectAt(cell) != null;
+    }
+
     public GameObject SetObjectAt(Vector2Int cell, GameObject obj)
     {
         Dictionary<int, GameObject> inner;
         if (!objects.TryGetValue(cell.x, out inner))
         {
-            return null;
+            if (!obj)
+            {
+                return null;
+            }
+            inner = new Dictionary<int, GameObject>();
+            objects.Add(cell.x, inner);
         }
 
         GameObject existing;
         inner.TryGetValue(cell.y, out existing);
-        inner.Add(cell.y, obj);
+        if (!obj)
+        {
+            inner.Remove(cell.y);
+        }
+        else
+        {
+            inner.Add(cell.y, obj);
+        }
 
         return existing;
+    }
+
+    public bool DeleteObjectAt(Vector2Int cell)
+    {
+        return SetObjectAt(cell, null) != null;
     }
 }
