@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,17 +7,35 @@ using UnityEngine.Tilemaps;
 public class TileController : MonoBehaviour
 {
     private Tilemap tilemap;
+    private Tile hovered;
+    public Camera Cam;
     
-    // Start is called before the first frame update
     void Start()
     {
         tilemap = GetComponent<Tilemap>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Input.GetAxis("x");
-        Input.GetAxis("y");
+        var mousePos = Input.mousePosition;
+        var worldPos = Cam.ScreenToWorldPoint(mousePos);
+        var tilemapPos = tilemap.WorldToCell(worldPos);
+        var tile = tilemap.GetTile<Tile>(tilemapPos);
+        if (tile != hovered)
+        {
+            if (hovered)
+            {
+                tile.color = Color.white;
+            }
+
+            if (!tile)
+            {
+                tile = ScriptableObject.CreateInstance<Tile>();
+                tilemap.SetTile(tilemapPos, tile);
+            }
+
+            hovered = tile;
+            tile.color = Color.red;
+        }
     }
 }
