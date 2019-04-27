@@ -8,10 +8,12 @@ public class TurretPlacer : MonoBehaviour
 {
     public Camera cam;
     public GameObject turretPrefab;
+    public GameObject wallPrefab;
     public int variant = 0;
 
     private GridController grid;
     private bool placeUponRelease;
+    private bool placeWallUponRelease;
     
     void Start()
     {
@@ -37,6 +39,22 @@ public class TurretPlacer : MonoBehaviour
                 placeUponRelease = true;
             }
         }
+        if (placeWallUponRelease)
+        {
+            if (Input.GetMouseButtonUp(1))
+            {
+                var cellPos = grid.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
+                SpawnWall(cellPos, wallPrefab);
+                placeWallUponRelease = false;
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                placeWallUponRelease = true;
+            }
+        }
     }
     
     public GameObject SpawnTower(Vector2Int gridPos, GameObject prefab)
@@ -45,5 +63,12 @@ public class TurretPlacer : MonoBehaviour
         tower.transform.position = grid.CellToCellCorner(gridPos) + new Vector3(0.5f, 0.5f, 0);
         tower.GetComponent<Turret>().variant = variant;
         return tower;
+    } 
+    
+    public GameObject SpawnWall(Vector2Int gridPos, GameObject prefab)
+    {
+        var wall = Instantiate(prefab);
+        wall.transform.position = grid.CellToCellCorner(gridPos) + new Vector3(0.5f, 0.5f, 0);
+        return wall;
     }
 }
