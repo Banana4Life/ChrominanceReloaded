@@ -6,6 +6,7 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     public float cellSize = 1f;
+    private Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
 
     private float CoordToCell(float coord)
     {
@@ -43,5 +44,37 @@ public class GridController : MonoBehaviour
     {
         var halfCell = cellSize / 2f;
         return new Vector3(cell.x * cellSize + halfCell, cell.y * cellSize + halfCell, transform.position.z);
+    }
+
+    public GameObject GetObjectAt(Vector2Int cell)
+    {
+        Dictionary<int, GameObject> inner;
+        if (!objects.TryGetValue(cell.x, out inner))
+        {
+            return null;
+        }
+
+        GameObject obj;
+        if (!inner.TryGetValue(cell.y, out obj))
+        {
+            return null;
+        }
+
+        return obj;
+    }
+
+    public GameObject SetObjectAt(Vector2Int cell, GameObject obj)
+    {
+        Dictionary<int, GameObject> inner;
+        if (!objects.TryGetValue(cell.x, out inner))
+        {
+            return null;
+        }
+
+        GameObject existing;
+        inner.TryGetValue(cell.y, out existing);
+        inner.Add(cell.y, obj);
+
+        return existing;
     }
 }
