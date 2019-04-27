@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,5 +32,10 @@ public class GridController : MonoBehaviour
     public Vector2Int WorldToCell(Vector3 world)
     {
         return new Vector2Int((int) CoordToCell(world.x), (int) CoordToCell(world.y));
+    }
+
+    public Vector3 CellToCellCorner(Vector2Int cell)
+    {
+        return new Vector3(cell.x * cellSize, cell.y * cellSize, transform.position.z);
     }
 }
