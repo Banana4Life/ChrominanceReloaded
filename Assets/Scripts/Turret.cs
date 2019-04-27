@@ -53,7 +53,8 @@ public class Turret : MonoBehaviour
             offsetLR *= -1;
             var p = Instantiate(turretVariant.projectile, transform.position + offset,
                 Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
-            p.GetComponent<Projectile>().speed = turretVariant.speed;
+            p.GetComponent<Projectile>().variant = turretVariant;
+
         }
 
         lastShot -= Time.deltaTime * 50;
