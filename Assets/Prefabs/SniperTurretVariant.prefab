@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   turretHead: {fileID: 21300000, guid: 115faa6891080b285a93c8ed0a13bd8e, type: 3}
-  shootCooldown: 5
+  shootCooldown: 40
   damage: 50
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
     type: 3}
-  speed: 2
+  speed: 8
   offset: 0
   maxRotationPerTick: 300
