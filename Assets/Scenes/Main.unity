@@ -749,8 +749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  towerPrefab: {fileID: 7899023718119891633, guid: b534a9901b37aa08eac00c60bb7ffa46,
+  turretPrefab: {fileID: 7899023718119891633, guid: b534a9901b37aa08eac00c60bb7ffa46,
     type: 3}
+  variant: 0
 --- !u!1 &1235845667
 GameObject:
   m_ObjectHideFlags: 0

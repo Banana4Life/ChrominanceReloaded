@@ -46,6 +46,7 @@ public class Turret : MonoBehaviour
             return;
         }
         turretVariant = variants[variant];
+        this.name = turretVariant.name;
 
         if (lockOnEnemy == null)
         {

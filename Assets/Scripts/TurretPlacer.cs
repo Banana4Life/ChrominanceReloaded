@@ -7,7 +7,8 @@ using UnityEngine;
 public class TurretPlacer : MonoBehaviour
 {
     public Camera cam;
-    public GameObject towerPrefab;
+    public GameObject turretPrefab;
+    public int variant = 0;
 
     private GridController grid;
     private bool placeUponRelease;
@@ -25,7 +26,7 @@ public class TurretPlacer : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 var cellPos = grid.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
-                SpawnTower(cellPos, towerPrefab);
+                SpawnTower(cellPos, turretPrefab);
                 placeUponRelease = false;
             }
         }
@@ -41,8 +42,8 @@ public class TurretPlacer : MonoBehaviour
     public GameObject SpawnTower(Vector2Int gridPos, GameObject prefab)
     {
         var tower = Instantiate(prefab);
-        tower.name = prefab.GetComponent<Turret>().getVariant().name;
         tower.transform.position = grid.CellToCellCorner(gridPos) + new Vector3(0.5f, 0.5f, 0);
+        tower.GetComponent<Turret>().variant = variant;
         return tower;
     }
 }
