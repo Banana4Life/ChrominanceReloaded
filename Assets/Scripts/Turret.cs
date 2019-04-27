@@ -14,9 +14,10 @@ public class Turret : MonoBehaviour
     private TurretVariant turretVariant;
     
     public GameObject head;
-    public GameObject projectile;
 
     public GameObject projectileContainer;
+    
+    private float offsetLR = -1f;
 
     private float lastShot;
 
@@ -49,7 +50,9 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
+        var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
+        offsetLR *= -1;
+        Instantiate(turretVariant.projectile, transform.position + offset, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
     }
 
 }
@@ -61,5 +64,7 @@ public class TurretVariant
     public Sprite turretHead;
     public float shootCooldown;
     public float damage;
+    public GameObject projectile;
 
+    public float offset = 0;
 }
