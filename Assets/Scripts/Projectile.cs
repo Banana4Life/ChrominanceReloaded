@@ -17,5 +17,9 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position += transform.rotation * Vector3.up * Time.deltaTime * speed;
+        if ((transform.position - transform.parent.position).sqrMagnitude > 100)
+        {
+            Destroy(gameObject);
+        }
     }
 }

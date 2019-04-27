@@ -31,7 +31,7 @@ public class GridController : MonoBehaviour
 
     public Vector2Int WorldToCell(Vector3 world)
     {
-        return new Vector2Int((int) CoordToCell(world.x), (int) CoordToCell(world.y));
+        return new Vector2Int((int) Mathf.Floor(CoordToCell(world.x)), (int) Mathf.Floor(CoordToCell(world.y)));
     }
 
     public Vector3 CellToCellCorner(Vector2Int cell)
