@@ -39,7 +39,8 @@ public class Enemy : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            Destroy(proj.gameObject);
+
+            proj.Die();
         }
 
     }

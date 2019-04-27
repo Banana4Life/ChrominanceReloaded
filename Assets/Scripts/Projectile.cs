@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
         CancelInvoke(nameof(Die));
     }
 
-    private void Die()
+    public void Die()
     {
         gameObject.SetActive(false);
     }

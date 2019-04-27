@@ -6,7 +6,7 @@ using UnityEngine;
 public class TurretVariant : MonoBehaviour
 {
     
-    public String name;
+    public String displayName;
     public Sprite turretHead;
     public float shootCooldown;
     public float damage;

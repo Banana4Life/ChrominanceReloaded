@@ -50,7 +50,8 @@ public class Turret : MonoBehaviour
             return;
         }
         turretVariant = variants[variant];
-        this.name = turretVariant.name;
+        projectilePool.prefab = turretVariant.projectile;
+        this.name = turretVariant.displayName;
 
         if (lockOnEnemy == null)
         {

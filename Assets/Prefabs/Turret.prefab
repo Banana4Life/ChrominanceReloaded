@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7899023718119891634}
   - component: {fileID: 7899023718119891635}
+  - component: {fileID: 2099638889270226677}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -113,10 +114,26 @@ MonoBehaviour:
   - {fileID: 4651737755701822646, guid: 475f6137362b47d19a7dae97a233c5cd, type: 3}
   - {fileID: 8694951976365122560, guid: b3c20a341a629514688f4e6ae65c49b1, type: 3}
   variant: 0
+  disabled: 0
   head: {fileID: 786703651229517505}
   projectileContainer: {fileID: 5797215584362983433}
   lockOnEnemy: {fileID: 0}
-  headAngle: 188
+--- !u!114 &2099638889270226677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899023718119891633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2ce7cf8cb30d0db87853c988e9f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preallocate: 1
+  prefab: {fileID: 0}
+  initialSize: 30
+  growBy: 30
 --- !u!1 &7899023719152111213
 GameObject:
   m_ObjectHideFlags: 0
