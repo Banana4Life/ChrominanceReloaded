@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = System.Object;
 
 public class Turret : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Turret : MonoBehaviour
 
     private float lastShot;
 
+    public GameObject lockOnEnemy;
+
     [Range(0.0f,360.0f)]
     public float headAngle;
 
@@ -34,25 +37,50 @@ public class Turret : MonoBehaviour
     void Update()
     {
         turretVariant = variants[variant];
-        
-        var headRenderer = head.GetComponentInChildren<SpriteRenderer>();
-        headRenderer.sprite = turretVariant.turretHead;
-        head.transform.rotation = Quaternion.Euler(0, 0, headAngle);
-        headAngle += Time.deltaTime * 50;
 
+        if (lockOnEnemy == null)
+        {
+            lockOnEnemy = FindNewEnemy();
+        }
+
+        LookAtEnemy();
+        ShootAtEnemy();
+    }
+
+    void ShootAtEnemy()
+    {
         lastShot -= Time.deltaTime * 50;
         if (lastShot <= 0)
         {
             lastShot = turretVariant.shootCooldown;
-            Shoot();
+            var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
+            offsetLR *= -1;
+            Instantiate(turretVariant.projectile, transform.position + offset, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
         }
     }
 
-    void Shoot()
+    GameObject FindNewEnemy()
     {
-        var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
-        offsetLR *= -1;
-        Instantiate(turretVariant.projectile, transform.position + offset, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
+        foreach (var enemy in FindObjectsOfType<Enemy>())
+        {
+            //enemy.gameObject.transform.position
+            return enemy.gameObject;
+        }
+
+        return null;
+    }
+
+    void LookAtEnemy()
+    {
+        if (lockOnEnemy != null)
+        {
+            var dir = lockOnEnemy.transform.position - transform.position;
+            headAngle = - Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            
+            var headRenderer = head.GetComponentInChildren<SpriteRenderer>();
+                    headRenderer.sprite = turretVariant.turretHead;
+                    head.transform.rotation = Quaternion.Euler(0, 0, headAngle);
+        }
     }
 
 }
