@@ -32,6 +32,12 @@ public class Turret : MonoBehaviour
     {
     }
 
+    public TurretVariant getVariant()
+    {
+        turretVariant = variants[variant];
+        return turretVariant;
+    }
+
     // Update is called once per frame
     void Update()
     {
