@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59abecd8f5cf1ef68a2b96b89ff4a165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Big Bertha
+  displayName: Big Bertha
   turretHead: {fileID: 21300000, guid: 67f4401cfeab0f016826327ba68cd2b5, type: 3}
   shootCooldown: 40
   damage: 100

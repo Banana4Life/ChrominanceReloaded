@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59abecd8f5cf1ef68a2b96b89ff4a165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Poison
+  displayName: Posion
   turretHead: {fileID: 21300000, guid: 6e0859152951a9f209e4a15110f2c85f, type: 3}
   shootCooldown: 10
   damage: 10
