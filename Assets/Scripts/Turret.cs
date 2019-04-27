@@ -6,6 +6,8 @@ public class Turret : MonoBehaviour
     public TurretVariant[] variants;
     public int variant = 0;
 
+    public Boolean disabled = false;
+    
     private TurretVariant turretVariant;
 
     public GameObject head;
@@ -33,6 +35,10 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (disabled)
+        {
+            return;
+        }
         turretVariant = variants[variant];
 
         if (lockOnEnemy == null)
