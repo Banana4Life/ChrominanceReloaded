@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
+﻿using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
 
-    public TurretVariant[] variants = new TurretVariant[4];
+    public TurretVariant[] variants;
     public int variant = 0;
 
     private TurretVariant turretVariant;
@@ -24,8 +18,7 @@ public class Turret : MonoBehaviour
 
     public GameObject lockOnEnemy;
 
-    [Range(0.0f,360.0f)]
-    public float headAngle;
+    private float headAngle;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +48,8 @@ public class Turret : MonoBehaviour
             lastShot = turretVariant.shootCooldown;
             var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
-            Instantiate(turretVariant.projectile, transform.position + offset, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
+            var p = Instantiate(turretVariant.projectile, transform.position + offset, Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
+            p.GetComponent<Projectile>().speed = turretVariant.speed;
         }
     }
 
@@ -83,16 +77,4 @@ public class Turret : MonoBehaviour
         }
     }
 
-}
-
-[Serializable]
-public class TurretVariant
-{
-    public String name;
-    public Sprite turretHead;
-    public float shootCooldown;
-    public float damage;
-    public GameObject projectile;
-
-    public float offset = 0;
 }

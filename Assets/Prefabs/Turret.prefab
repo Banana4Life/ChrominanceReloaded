@@ -108,38 +108,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variants:
-  - name: 
-    turretHead: {fileID: 21300000, guid: 115faa6891080b285a93c8ed0a13bd8e, type: 3}
-    shootCooldown: 20
-    damage: 50
-    projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
-      type: 3}
-    offset: 0
-  - name: 
-    turretHead: {fileID: 21300000, guid: 67f4401cfeab0f016826327ba68cd2b5, type: 3}
-    shootCooldown: 40
-    damage: 100
-    projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
-      type: 3}
-    offset: 0
-  - name: 
-    turretHead: {fileID: 21300000, guid: 6e0859152951a9f209e4a15110f2c85f, type: 3}
-    shootCooldown: 30
-    damage: 10
-    projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
-      type: 3}
-    offset: 0
-  - name: 
-    turretHead: {fileID: 21300000, guid: 2e594e8bfff4a5724834cd1e326e9da0, type: 3}
-    shootCooldown: 10
-    damage: 20
-    projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
-      type: 3}
-    offset: 0.1
+  - {fileID: 2058180181690589677, guid: 94ba825e08055d3ce97bb772aa44c53f, type: 3}
+  - {fileID: 7267608866521626940, guid: 29be88bb70bd609a4abc94144fd8ac37, type: 3}
+  - {fileID: 4651737755701822646, guid: 475f6137362b47d19a7dae97a233c5cd, type: 3}
+  - {fileID: 8694951976365122560, guid: b3c20a341a629514688f4e6ae65c49b1, type: 3}
   variant: 0
   head: {fileID: 786703651229517505}
   projectileContainer: {fileID: 5797215584362983433}
-  headAngle: 0
+  lockOnEnemy: {fileID: 0}
+  headAngle: 188
 --- !u!1 &7899023719152111213
 GameObject:
   m_ObjectHideFlags: 0
