@@ -28,6 +28,8 @@ public class Turret : MonoBehaviour
 
     private Boolean isAimed;
 
+    public Color color = Color.green;
+
     private GameObjectPool projectilePool;
 
     // Start is called before the first frame update
@@ -45,13 +47,12 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateVariant();
+        
         if (disabled)
         {
             return;
         }
-        turretVariant = variants[variant];
-        projectilePool.prefab = turretVariant.projectile;
-        this.name = turretVariant.displayName;
 
         if (lockOnEnemy == null)
         {
@@ -60,6 +61,17 @@ public class Turret : MonoBehaviour
 
         AimAtEnemy();
         ShootAtEnemy();
+    }
+    
+    void UpdateVariant()
+    {
+        turretVariant = variants[variant];
+        projectilePool.prefab = turretVariant.projectile;
+        name = turretVariant.displayName;
+        
+        var rend = head.GetComponentInChildren<SpriteRenderer>();
+        var newSprite = turretVariant.getSprite(color);
+        rend.sprite = newSprite;
     }
 
     void ShootAtEnemy()
@@ -102,8 +114,6 @@ public class Turret : MonoBehaviour
                 desiredAngle = -Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
                 isAimed = RotateTo(desiredAngle, turretVariant.maxRotationPerTick);
 
-                var headRenderer = head.GetComponentInChildren<SpriteRenderer>();
-                headRenderer.sprite = turretVariant.turretHead;
                 head.transform.rotation = Quaternion.Euler(0, 0, headAngle);    
             }
         }

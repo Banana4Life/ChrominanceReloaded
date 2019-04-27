@@ -397,6 +397,12 @@ PrefabInstance:
       propertyPath: disabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099638889270226677, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b534a9901b37aa08eac00c60bb7ffa46, type: 3}
 --- !u!4 &655677534 stripped
@@ -513,6 +519,12 @@ PrefabInstance:
       propertyPath: disabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099638889270226677, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b534a9901b37aa08eac00c60bb7ffa46, type: 3}
 --- !u!4 &994030958 stripped
@@ -598,6 +610,12 @@ PrefabInstance:
       propertyPath: disabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099638889270226677, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b534a9901b37aa08eac00c60bb7ffa46, type: 3}
 --- !u!4 &1025138342 stripped
@@ -683,6 +701,12 @@ PrefabInstance:
       propertyPath: disabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099638889270226677, guid: b534a9901b37aa08eac00c60bb7ffa46,
+        type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b534a9901b37aa08eac00c60bb7ffa46, type: 3}
 --- !u!4 &1135762100 stripped
