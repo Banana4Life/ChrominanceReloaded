@@ -60,7 +60,7 @@ public class TurretPlacer : MonoBehaviour
     public GameObject SpawnTower(Vector2Int gridPos, GameObject prefab)
     {
         var tower = Instantiate(prefab);
-        tower.transform.position = grid.CellToCellCorner(gridPos) + new Vector3(0.5f, 0.5f, 0);
+        tower.transform.position = grid.CellToCellCenter(gridPos);
         tower.GetComponent<Turret>().variant = variant;
         return tower;
     } 

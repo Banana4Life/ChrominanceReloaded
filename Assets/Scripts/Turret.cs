@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent((typeof(GameObjectPool)))]
 public class Turret : MonoBehaviour
 {
     public TurretVariant[] variants;
@@ -27,9 +28,12 @@ public class Turret : MonoBehaviour
 
     private Boolean isAimed;
 
+    private GameObjectPool projectilePool;
+
     // Start is called before the first frame update
     void Start()
     {
+        projectilePool = GetComponent<GameObjectPool>();
     }
 
     public TurretVariant getVariant()
@@ -64,10 +68,10 @@ public class Turret : MonoBehaviour
             lastShot = turretVariant.shootCooldown;
             var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
-            var p = Instantiate(turretVariant.projectile, transform.position + offset,
-                Quaternion.Euler(0, 0, headAngle), projectileContainer.transform);
-            p.GetComponent<Projectile>().variant = turretVariant;
-
+            var obj = projectilePool.Get();
+            obj.transform.position = transform.position + offset;
+            obj.transform.rotation = Quaternion.Euler(0, 0, headAngle);
+            obj.GetComponent<Projectile>().variant = turretVariant;
         }
 
         lastShot -= Time.deltaTime * 50;

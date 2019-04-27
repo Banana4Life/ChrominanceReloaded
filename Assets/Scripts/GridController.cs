@@ -38,4 +38,10 @@ public class GridController : MonoBehaviour
     {
         return new Vector3(cell.x * cellSize, cell.y * cellSize, transform.position.z);
     }
+
+    public Vector3 CellToCellCenter(Vector2Int cell)
+    {
+        var halfCell = cellSize / 2f;
+        return new Vector3(cell.x * cellSize + halfCell, cell.y * cellSize + halfCell, transform.position.z);
+    }
 }
