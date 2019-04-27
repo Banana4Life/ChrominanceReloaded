@@ -47,3 +47,6 @@ TagManager:
   - name: Turrets
     uniqueID: 2398013889
     locked: 0
+  - name: Projectiles
+    uniqueID: 3016232061
+    locked: 0
