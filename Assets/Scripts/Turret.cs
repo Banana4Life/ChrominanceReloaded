@@ -205,7 +205,8 @@ public class Turret : MonoBehaviour
         Vector3 targetPosNext = target.GetPosAt(iteration + 1);
         Vector3 targetPosition = target.GetPosAt(iteration);
 
-        Vector3 targetVelocity = (targetPosNext - targetPosition).normalized * target.speed;
+        Vector3 targetDirDelta = (targetPosNext - targetPosition);
+        Vector3 targetVelocity = targetDirDelta.normalized * target.speed;
 
 
         float partOne = 2f * ((targetVelocity.x * targetVelocity.x) + (targetVelocity.y * targetVelocity.y) - (bulletSpeed * bulletSpeed));
@@ -214,18 +215,14 @@ public class Turret : MonoBehaviour
         
         float x = (1f / partOne) * (-Mathf.Sqrt((partTwo * partTwo) - (2f * partOne * partThree)) - partTwo);
 
-
-        Vector3 intersectionPos = targetVelocity * Mathf.Abs(x) + targetPosition;
-
-
-        var dist = (intersectionPos - targetPosition).magnitude / targetVelocity.magnitude;
+        var targetInstersectDelta = targetVelocity * Mathf.Abs(x);
         
-        if (dist > 5)
+        if (targetInstersectDelta.sqrMagnitude > targetVelocity.sqrMagnitude)
         {
-            return Vector3.zero;
-            //return getIntersection(target, iteration + 1, x + i);
+            return getIntersection(target, iteration + 1, x + i);
         }
-
+        
+        Vector3 intersectionPos = targetPosition + targetInstersectDelta;
         return intersectionPos;
     }
 }
