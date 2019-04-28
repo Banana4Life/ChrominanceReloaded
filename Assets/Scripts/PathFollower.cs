@@ -54,9 +54,13 @@ public class PathFollower : MonoBehaviour
     public Vector3 GetPosAt(int node)
     {
         var requestedNode = pathIndex + node;
-        if (currentPath != null && requestedNode < currentPath.Count)
+        if (currentPath != null)
         {
-            return target.grid.CellToCellCenter(currentPath[requestedNode]);
+            if (requestedNode < currentPath.Count)
+            {
+                return target.grid.CellToCellCenter(currentPath[requestedNode]);
+            }
+            return target.grid.CellToCellCenter(currentPath[currentPath.Count - 1]);
         }
         return transform.position;
     }

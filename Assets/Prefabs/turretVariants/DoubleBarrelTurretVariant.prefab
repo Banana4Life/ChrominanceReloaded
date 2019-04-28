@@ -50,5 +50,6 @@ MonoBehaviour:
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
     type: 3}
   speed: 6
-  offset: 0.2
+  offset: 0.1
   maxRotationPerTick: 50
+  launcherOffset: {x: 0, y: 0.72, z: 0}

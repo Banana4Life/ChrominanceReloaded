@@ -36,7 +36,7 @@ public class Turret : MonoBehaviour
     private GameObjectPool projectilePool;
 
     private float enemyIntersectTime;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -171,9 +171,20 @@ public class Turret : MonoBehaviour
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);
             
+            // Intersection Spheres
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, enemyIntersectTime * turretVariant.speed);
             Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemyIntersectTime * enemy.speed);
+            
+            // Enemy Velocity Spheres
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed);
+            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 2);
+            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 3);
+            
+            // Last Enemy Source Node
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(tNode, 0.1f);
         }
     }
 
@@ -203,8 +214,9 @@ public class Turret : MonoBehaviour
 
     private Vector3 getIntersection(PathFollower pathFollower, int iteration, float ti)
     {
-        if (iteration > 5)
+        if (iteration > 20)
         {
+            Debug.Log("MAXIT");
             return pathFollower.gameObject.transform.position;
         }
         
@@ -233,38 +245,51 @@ public class Turret : MonoBehaviour
         var dd = (chaser - target);
         var alpha = Vector3.Angle(dd, vt) * Mathf.Deg2Rad;
         
-        var t = calcTime(vc, dd.magnitude, vt, alpha);
+        var t = calcTime(vc, dd.magnitude, vt, alpha, ti);
 
+        
+        var tvt = vt * Mathf.Abs(t);
+        
+        if ( tvt.magnitude > vtRaw.magnitude)
+        {
+            return getIntersection(pathFollower, iteration + 1, (t / tvt.magnitude * vtRaw.magnitude) + ti);
+        }
+        
+        finalIterationCount = iteration;
+        tNode = target;
 
-        var tvt = vt * t;
-        //if (t > 1)
-        //{
-        //    return getIntersection(pathFollower, iteration + 1, t + ti);
-        //}
-
-        enemyIntersectTime = t;
+        enemyIntersectTime = t + ti;
         
         Vector3 intersectionPos = target + tvt;
         return intersectionPos;
     }
+    
+    public float finalIterationCount;
+    public Vector3 tNode;
 
-    private static float calcTime(float vc, float d, Vector3 vt, float alpha)
+    private static float calcTime(float vc, float d, Vector3 vt, float alpha, float n)
     {
+        // (t . vc)2 = (t . vt)2 + d2 - 2 . d . t . vt . cos(α) 
+        
+        // ((v-n) * c)^2 = ((v-n) * t)^2 + d^2 - 2 * d * (v-n) * t * cos(z) 
         var sqrVc = vc * vc;
 
         //a = vc^2 - vt^2
         var a = sqrVc - vt.sqrMagnitude;
         //b = 2 * d * vt * cos(α)
-        var b = 2 * d * vt.magnitude * Mathf.Cos(alpha);
+        var b = 2 * sqrVc * n + 2 * d * vt.magnitude * Mathf.Cos(alpha);
         //c = - d2
-        var c = -(d * d);
+        var c = (sqrVc * n * n) - (d * d);
         
         if (b*b - 4 * a * c < 0)
         {
+            Debug.Log("ZERO");
             return 0;
         }
         
         //t = (- b ± √(b^2 - 4 * a * c)) / (2 * a)
-        return (Mathf.Sqrt(b * b - 4 * a * c) -b) / (2 * a);
+        var t1 = (+Mathf.Sqrt(b * b - 4 * a * c) -b) / (2 * a);
+        var t2 = (-Mathf.Sqrt(b * b - 4 * a * c) -b) / (2 * a);
+        return Mathf.Max(t1, t2);
     }
 }
