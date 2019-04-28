@@ -7,26 +7,48 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 5;
     public float health = 100;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float waypointDistance = 3;
+    public EnemyTarget target;
 
-    // Update is called once per frame
+    private List<Vector2Int> currentPath;
+    private int pathIndex = 0;
+    private Vector3 currentTargetCell;
+    
     void Update()
     {
-        // TODO i am cheap movment code kill me
-        var newPos = transform.position + transform.rotation * Vector3.up * Time.deltaTime * speed;
-        if ((newPos - transform.parent.position).sqrMagnitude > 20)
+        if (target)
         {
-            transform.Rotate(Vector3.forward, 90f); 
+            if (currentPath == null)
+            {
+                currentPath = target.FindPathFrom(transform.position);
+                if (currentPath != null)
+                {
+                    pathIndex = 0;
+                    currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex++]);
+                }
+            }
+
+            if (currentPath != null)
+            {
+                PathFinder.DebugRenderPath(target.grid, currentPath);
+                // TODO i am cheap movment code kill me
+                var distance = currentTargetCell - transform.position;
+                transform.position += Time.deltaTime * speed * distance.normalized;
+                if (distance.sqrMagnitude < waypointDistance * waypointDistance)
+                {
+                    pathIndex++;
+                    if (pathIndex >= currentPath.Count)
+                    {
+                        currentPath = null;
+                    }
+                    else
+                    {
+                        currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
+                    }
+                }
+            }
         }
-        else
-        {
-            transform.position = newPos;
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)

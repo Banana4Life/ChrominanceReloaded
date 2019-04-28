@@ -31,6 +31,7 @@ public class EnemySource : MonoBehaviour
     public GameObject SpawnEnemy()
     {
         var obj = pool.Get();
+        obj.GetComponent<Enemy>().target = target;
         obj.transform.position = grid.CellToCellCenter(GetCell());
 
         return obj;
