@@ -83,7 +83,7 @@ public class GridController : MonoBehaviour
 
     public bool HasObjectAt(Vector2Int cell)
     {
-        return !GetObjectAt(cell);
+        return GetObjectAt(cell);
     }
 
     public GameObject SetObjectAt(Vector2Int cell, GameObject obj)
