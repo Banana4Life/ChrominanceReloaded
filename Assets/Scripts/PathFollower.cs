@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,13 @@ public class PathFollower : MonoBehaviour
     private List<Vector2Int> currentPath;
     private int pathIndex = 0;
     private Vector3 currentTargetCell;
-    
+
+    private void OnDisable()
+    {
+        target = null;
+        currentPath = null;
+    }
+
     void Update()
     {
         if (target)
