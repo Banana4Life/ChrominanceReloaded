@@ -81,6 +81,7 @@ public class Turret : MonoBehaviour
         name = turretVariant.displayName;
         
         headRenderer.sprite = turretVariant.getHeadSprite(turretColorVariant);
+        headRenderer.color = turretColorVariant.color;
         baseRenderer.sprite = turretVariant.getBaseSprite();
     }
 

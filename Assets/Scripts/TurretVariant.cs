@@ -48,19 +48,8 @@ public class TurretVariant : MonoBehaviour
 
     public Sprite getHeadSprite(ColorVariant variant)
     {
-        Sprite sprite;
-
-        generatedSprites.TryGetValue(variant.color, out sprite);
-
-        if (sprite == null)
-        {
-            Debug.Log("generate Sprite for " + displayName + " in " + variant.color);
-            sprite = generateSprite(spriteAtlas.GetSprite("half_empty"), variant.color);    
-            sprite.name = displayName + " " + variant;
-            generatedSprites.Add(variant.color, sprite);
-        }
-
-        return sprite;
+        // TODO return based on state
+        return spriteAtlas.GetSprite("half_empty");
     }
     
     // Start is called before the first frame update
