@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59abecd8f5cf1ef68a2b96b89ff4a165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: Posion
+  displayName: TestTurret
   turretHead: {fileID: 21300000, guid: 37cc84c3fd207893ab99c91ac8412f39, type: 3}
-  shootCooldown: 10
+  shootCooldown: 15
   damage: 10
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
     type: 3}
-  speed: 3
+  speed: 4
   offset: 0
-  maxRotationPerTick: 300
+  maxRotationPerTick: 360
+  launcherOffset: {x: 0, y: 0.72, z: 0}
