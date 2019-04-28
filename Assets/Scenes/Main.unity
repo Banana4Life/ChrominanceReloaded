@@ -1026,12 +1026,12 @@ PrefabInstance:
     - target: {fileID: 7899023718119891634, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 203.17
+      value: 5.18
       objectReference: {fileID: 0}
     - target: {fileID: 7899023718119891634, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 76.979996
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 7899023718119891634, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
@@ -1233,12 +1233,12 @@ PrefabInstance:
     - target: {fileID: 185839747303420726, guid: d08b45bb1d9f89267899700f699c469b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 204
+      value: 5.71
       objectReference: {fileID: 0}
     - target: {fileID: 185839747303420726, guid: d08b45bb1d9f89267899700f699c469b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 79
+      value: 3.99
       objectReference: {fileID: 0}
     - target: {fileID: 185839747303420726, guid: d08b45bb1d9f89267899700f699c469b,
         type: 3}
@@ -1551,6 +1551,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 3476488542556268613, guid: 5d69b444d078eb651b3f839b67392bd9,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1226824280}
     - target: {fileID: 3476488542556268612, guid: 5d69b444d078eb651b3f839b67392bd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1606,11 +1611,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3476488542556268613, guid: 5d69b444d078eb651b3f839b67392bd9,
-        type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 1226824280}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d69b444d078eb651b3f839b67392bd9, type: 3}
 --- !u!1001 &6155455988641560723
