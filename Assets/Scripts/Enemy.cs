@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 5;
     public float health = 100;
-    public float waypointDistance = 3;
+    public float waypointDistance = 0.5f;
     public EnemyTarget target;
 
     private List<Vector2Int> currentPath;
@@ -24,17 +24,16 @@ public class Enemy : MonoBehaviour
                 if (currentPath != null)
                 {
                     pathIndex = 0;
-                    currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex++]);
+                    currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
                 }
             }
 
             if (currentPath != null)
             {
                 PathFinder.DebugRenderPath(target.grid, currentPath);
-                // TODO i am cheap movment code kill me
                 var distance = currentTargetCell - transform.position;
                 transform.position += Time.deltaTime * speed * distance.normalized;
-                if (distance.sqrMagnitude < waypointDistance * waypointDistance)
+                if (distance.magnitude < target.grid.cellSize / 8f)
                 {
                     pathIndex++;
                     if (pathIndex >= currentPath.Count)
@@ -51,20 +50,13 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnDrawGizmos()
     {
-        var proj = other.gameObject.GetComponent<Projectile>();
-        if (proj)
+        if (currentTargetCell != null)
         {
-            health -= proj.variant.damage;
-            if (health < 0)
-            {
-                Destroy(gameObject);
-            }
-
-            proj.Die();
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(currentTargetCell, 0.25f);
         }
-
     }
 
     public void Damage(float amount)
@@ -72,7 +64,7 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health < 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
