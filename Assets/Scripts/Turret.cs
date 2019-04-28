@@ -237,10 +237,10 @@ public class Turret : MonoBehaviour
 
 
         var tvt = vt * t;
-        if (t > 1)
-        {
-            return getIntersection(pathFollower, iteration + 1, t + ti);
-        }
+        //if (t > 1)
+        //{
+        //    return getIntersection(pathFollower, iteration + 1, t + ti);
+        //}
 
         enemyIntersectTime = t;
         
