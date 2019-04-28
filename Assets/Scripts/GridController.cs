@@ -7,6 +7,24 @@ public class GridController : MonoBehaviour
 {
     public float cellSize = 1f;
     private Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
+    private List<Vector2Int> neighbors = new List<Vector2Int>();
+
+    public GridController()
+    {
+        neighbors.Add(new Vector2Int(1, 0));
+        neighbors.Add(new Vector2Int(0, -1));
+        neighbors.Add(new Vector2Int(-1, 0));
+        neighbors.Add(new Vector2Int(0, 1));
+    }
+
+    private void Update()
+    {
+        var path = PathFinder.FindPath(this, new Vector2Int(-20, 0), new Vector2Int(20, 0));
+        if (path != null)
+        {
+            PathFinder.DebugRenderPath(this, path);
+        }
+    }
 
     private float CoordToCell(float coord)
     {
@@ -65,7 +83,7 @@ public class GridController : MonoBehaviour
 
     public bool HasObjectAt(Vector2Int cell)
     {
-        return GetObjectAt(cell) != null;
+        return !GetObjectAt(cell);
     }
 
     public GameObject SetObjectAt(Vector2Int cell, GameObject obj)
@@ -98,5 +116,20 @@ public class GridController : MonoBehaviour
     public bool DeleteObjectAt(Vector2Int cell)
     {
         return SetObjectAt(cell, null) != null;
+    }
+
+    public List<Vector2Int> GetFreeNeighborsOf(Vector2Int cell)
+    {
+        var freeNeighbors = new List<Vector2Int>();
+        for (var i = 0; i < neighbors.Count; i++)
+        {
+            var pos = cell + neighbors[i];
+            if (!HasObjectAt(pos))
+            {
+                freeNeighbors.Add(pos);
+            }
+        }
+
+        return freeNeighbors;
     }
 }
