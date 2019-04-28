@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aa6010cfef41d3869760b31d987ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDecals: 100
+  maxDecals: 1000
   decalSizeMin: 0.5
   decalSizeMax: 1.5
 --- !u!199 &7759077686182774654
@@ -118,7 +118,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5428678791231563410}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
