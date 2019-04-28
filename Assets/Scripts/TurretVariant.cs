@@ -8,6 +8,7 @@ public class TurretVariant : MonoBehaviour
     
     public String displayName;
     public Sprite turretHead;
+    public Sprite turretBase;
     public float shootCooldown;
     public float damage;
     public GameObject projectile;
@@ -38,18 +39,18 @@ public class TurretVariant : MonoBehaviour
         return Sprite.Create(texture, origSprite.rect, new Vector2(0.5f, 0.5f));
     }
 
-    public Sprite getSprite(Color color)
+    public Sprite getHeadSprite(ColorVariant variant)
     {
         Sprite sprite;
 
-        generatedSprites.TryGetValue(color, out sprite);
+        generatedSprites.TryGetValue(variant.color, out sprite);
 
         if (sprite == null)
         {
-            Debug.Log("generate Sprite for " + displayName + " in " + color);
-            sprite = generateSprite(turretHead, color);
-            sprite.name = displayName + " " + color;
-            generatedSprites.Add(color, sprite);
+            Debug.Log("generate Sprite for " + displayName + " in " + variant.color);
+            sprite = generateSprite(turretHead, variant.color);
+            sprite.name = displayName + " " + variant;
+            generatedSprites.Add(variant.color, sprite);
         }
 
         return sprite;

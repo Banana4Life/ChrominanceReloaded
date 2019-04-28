@@ -4,43 +4,43 @@ using UnityEngine;
 [RequireComponent((typeof(GameObjectPool)))]
 public class Turret : MonoBehaviour
 {
-    public TurretVariant[] variants;
-    public ColorVariant[] colorVariants;
+    [Header("Settings")]
+    [Range(0,3)]
     public int variant = 0;
+    [Range(0,2)]
     public int colorVariant = 0;
 
     public Boolean disabled = false;
     
     private TurretVariant turretVariant;
-
-    public GameObject head;
-
-    public GameObject projectileContainer;
-
-    private float offsetLR = -1f;
-
-    private float lastShot;
-
+    private ColorVariant turretColorVariant;
+    
+    [Header("Aim")]
     public GameObject lockOnEnemy;
-
+    public float finalIterationCount;
+    public Vector3 tNode;
+    private float enemyIntersectTime;
+    private Boolean isAimed;
     private float desiredAngle;
     private float headAngle;
-
     private Vector3 aimLocation;
+    private float offsetLR = -1f;
+    private float lastShot;
 
-    private Boolean isAimed;
-
-    public Color color = Color.green;
-    public Gradient gradient = new Gradient();
-
-    private GameObjectPool projectilePool;
-
-    private float enemyIntersectTime;
+    [Header("Self Reference")]
+    public GameObject head;
+    public SpriteRenderer headRenderer;
+    public SpriteRenderer baseRenderer;
+    public ParticleLauncher launcher;
+    public GameObjectPool projectilePool;
     
+    [Header("Variants")]
+    public TurretVariant[] variants;
+    public ColorVariant[] colorVariants;
+
     // Start is called before the first frame update
     void Start()
     {
-        projectilePool = GetComponent<GameObjectPool>();
     }
 
     public TurretVariant getVariant()
@@ -71,8 +71,7 @@ public class Turret : MonoBehaviour
     
     void UpdateColor()
     {
-        color = colorVariants[colorVariant].color;
-        gradient = colorVariants[colorVariant].gradient;
+        turretColorVariant = colorVariants[colorVariant];
     }
     
     void UpdateVariant()
@@ -81,9 +80,8 @@ public class Turret : MonoBehaviour
         projectilePool.prefab = turretVariant.projectile;
         name = turretVariant.displayName;
         
-        var rend = head.GetComponentInChildren<SpriteRenderer>();
-        var newSprite = turretVariant.getSprite(color);
-        rend.sprite = newSprite;
+        headRenderer.sprite = turretVariant.getHeadSprite(turretColorVariant);
+        baseRenderer.sprite = turretVariant.turretBase;
     }
 
     void ShootAtEnemy()
@@ -94,8 +92,7 @@ public class Turret : MonoBehaviour
             var offset = Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
             
-            var pla = head.GetComponentInChildren<ParticleLauncher>();
-            pla.Shoot(turretVariant, offset, gradient);
+            launcher.Shoot(turretVariant, offset, turretColorVariant.gradient);
         }
 
         lastShot -= Time.deltaTime * 50;
@@ -267,9 +264,6 @@ public class Turret : MonoBehaviour
         return intersectionPos;
     }
     
-    public float finalIterationCount;
-    public Vector3 tNode;
-
     private static float calcTime(float vc, float d, Vector3 vt, float alpha, float n)
     {
         // (t . vc)2 = (t . vt)2 + d2 - 2 . d . t . vt . cos(α) 

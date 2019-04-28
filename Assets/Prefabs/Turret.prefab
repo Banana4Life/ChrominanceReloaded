@@ -4919,6 +4919,10 @@ MonoBehaviour:
   colorVariant: 0
   disabled: 0
   head: {fileID: 786703651229517505}
+  headRenderer: {fileID: 7899023719152111215}
+  baseRenderer: {fileID: 7899023719165087263}
+  launcher: {fileID: 3273327843810057160}
+  projectilePool: {fileID: 2099638889270226677}
   projectileContainer: {fileID: 5797215584362983433}
   lockOnEnemy: {fileID: 0}
   color: {r: 0, g: 1, b: 0, a: 1}
@@ -4951,6 +4955,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  finalIterationCount: 0
+  tNode: {x: 0, y: 0, z: 0}
 --- !u!114 &2099638889270226677
 MonoBehaviour:
   m_ObjectHideFlags: 0
