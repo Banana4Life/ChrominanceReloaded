@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Double Barrel
-  turretHead: {fileID: 21300000, guid: 026e842a602223827bfcd02b3643f33b, type: 3}
-  turretBase: {fileID: 21300000, guid: 34b482648bfb9b7df967fea37733b620, type: 3}
+  spriteAtlas: {fileID: 4343727234628468602, guid: a608c340e3df3ab9abe32582eefac1c0,
+    type: 2}
   shootCooldown: 4
   damage: 20
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,

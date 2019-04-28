@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: TestTurret
-  turretHead: {fileID: 21300000, guid: 37cc84c3fd207893ab99c91ac8412f39, type: 3}
-  turretBase: {fileID: 21300000, guid: 9eea326659b97d324bcadedec1d528bc, type: 3}
+  spriteAtlas: {fileID: 4343727234628468602, guid: 8730afce7ba1f269d889093df166ac0a,
+    type: 2}
   shootCooldown: 15
   damage: 10
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,

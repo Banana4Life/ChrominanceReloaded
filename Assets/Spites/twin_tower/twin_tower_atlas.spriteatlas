@@ -17,7 +17,7 @@ SpriteAtlas:
       textureCompression: 0
       filterMode: 1
       generateMipMaps: 0
-      readable: 0
+      readable: 1
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
@@ -45,18 +45,21 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d34f69e7640451f1abbc100746f55e7e, type: 3}
     - {fileID: 2800000, guid: 9b86b1e2c4a09bb9a985d95e2f52e482, type: 3}
     - {fileID: 2800000, guid: d2184db2bae7ecf49b3ed32a78c8a40d, type: 3}
-    totalSpriteSurfaceArea: 4905268
+    - {fileID: 2800000, guid: 7ccf541439a18a5e088bf398b3d4934c, type: 3}
+    totalSpriteSurfaceArea: 5733368
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: d2184db2bae7ecf49b3ed32a78c8a40d, type: 3}
   - {fileID: 21300000, guid: 9b86b1e2c4a09bb9a985d95e2f52e482, type: 3}
+  - {fileID: 21300000, guid: 7ccf541439a18a5e088bf398b3d4934c, type: 3}
   - {fileID: 21300000, guid: d34f69e7640451f1abbc100746f55e7e, type: 3}
   - {fileID: 21300000, guid: 2eed5edd8744d5e81a28d0187064538d, type: 3}
   m_PackedSpriteNamesToIndex:
-  - double_tower_voll
-  - double_tower_halb_voll
-  - double_tower_halb_leer
-  - double_tower_leer
+  - full
+  - half_full
+  - base
+  - half_empty
+  - empty
   m_Tag: twin_tower_atlas
   m_IsVariant: 0

@@ -17,7 +17,7 @@ SpriteAtlas:
       textureCompression: 0
       filterMode: 1
       generateMipMaps: 0
-      readable: 0
+      readable: 1
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
@@ -45,18 +45,21 @@ SpriteAtlas:
     - {fileID: 2800000, guid: a5117e3311425355090ce969616fe649, type: 3}
     - {fileID: 2800000, guid: 008480f9c52e1e360b63913038ea420e, type: 3}
     - {fileID: 2800000, guid: 6874a4ee419266dc88ca7541b781337a, type: 3}
-    totalSpriteSurfaceArea: 2616852
+    - {fileID: 2800000, guid: 2655d9d618ee10a7b835b1bc607f83cd, type: 3}
+    totalSpriteSurfaceArea: 3444952
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: a5117e3311425355090ce969616fe649, type: 3}
   - {fileID: 21300000, guid: fc2b1bd37244e215484584b9851adde5, type: 3}
+  - {fileID: 21300000, guid: 2655d9d618ee10a7b835b1bc607f83cd, type: 3}
   - {fileID: 21300000, guid: 008480f9c52e1e360b63913038ea420e, type: 3}
   - {fileID: 21300000, guid: 6874a4ee419266dc88ca7541b781337a, type: 3}
   m_PackedSpriteNamesToIndex:
-  - big_tower_halb_leer
-  - big_tower_leer
-  - big_tower_halb_voll
-  - big_tower_voll
+  - half_empty
+  - empty
+  - base
+  - half_full
+  - full
   m_Tag: big_tower_atlas
   m_IsVariant: 0

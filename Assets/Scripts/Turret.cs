@@ -81,7 +81,7 @@ public class Turret : MonoBehaviour
         name = turretVariant.displayName;
         
         headRenderer.sprite = turretVariant.getHeadSprite(turretColorVariant);
-        baseRenderer.sprite = turretVariant.turretBase;
+        baseRenderer.sprite = turretVariant.getBaseSprite();
     }
 
     void ShootAtEnemy()

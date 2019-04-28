@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class TurretVariant : MonoBehaviour
 {
     
     public String displayName;
-    public Sprite turretHead;
-    public Sprite turretBase;
+
+    public SpriteAtlas spriteAtlas;
+
     public float shootCooldown;
     public float damage;
     public GameObject projectile;
@@ -39,6 +41,11 @@ public class TurretVariant : MonoBehaviour
         return Sprite.Create(texture, origSprite.rect, new Vector2(0.5f, 0.5f));
     }
 
+    public Sprite getBaseSprite()
+    {
+        return spriteAtlas.GetSprite("base");
+    }
+
     public Sprite getHeadSprite(ColorVariant variant)
     {
         Sprite sprite;
@@ -48,7 +55,7 @@ public class TurretVariant : MonoBehaviour
         if (sprite == null)
         {
             Debug.Log("generate Sprite for " + displayName + " in " + variant.color);
-            sprite = generateSprite(turretHead, variant.color);
+            sprite = generateSprite(spriteAtlas.GetSprite("half_empty"), variant.color);    
             sprite.name = displayName + " " + variant;
             generatedSprites.Add(variant.color, sprite);
         }
