@@ -49,6 +49,7 @@ MonoBehaviour:
   damage: 100
   projectile: {fileID: 443262248819854142, guid: 3eb3de2f28c02e91eb73e402d73eacf7,
     type: 3}
-  speed: 5
+  speed: 3
   offset: 0
   maxRotationPerTick: 300
+  launcherOffset: {x: 0, y: 0.72, z: 0}

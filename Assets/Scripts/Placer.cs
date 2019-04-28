@@ -12,6 +12,8 @@ public abstract class Placer : MonoBehaviour
     private bool placeUponRelease;
     private Vector2Int cellClicked;
 
+    public GameObject container;
+
     protected Placer(int mouseButton)
     {
         this.mouseButton = mouseButton;
@@ -39,6 +41,7 @@ public abstract class Placer : MonoBehaviour
                 {
                     var obj = Spawn(cellPos);
                     grid.SetObjectAt(cellPos, obj);
+                    obj.transform.parent = container.transform;
                 }
 
                 placeUponRelease = false;

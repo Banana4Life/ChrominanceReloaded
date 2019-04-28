@@ -51,5 +51,5 @@ MonoBehaviour:
     type: 3}
   speed: 6
   offset: 0.1
-  maxRotationPerTick: 50
+  maxRotationPerTick: 90
   launcherOffset: {x: 0, y: 0.72, z: 0}
