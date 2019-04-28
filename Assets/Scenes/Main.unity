@@ -1291,6 +1291,17 @@ PrefabInstance:
       propertyPath: m_Text
       value: Twin
       objectReference: {fileID: 0}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fb234faa0f9dd2f0dab92ab77f15cf57,
+        type: 3}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc64bec69fad44c797b21a0f422261b, type: 3}
 --- !u!224 &799912072 stripped
@@ -2101,7 +2112,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b071b3c01fd14c25ba3b2ea65b94bd60,
+      objectReference: {fileID: 21300000, guid: c93b0d1105be87900bc7413e3bb86dfa,
         type: 3}
     - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
         type: 3}
@@ -2651,6 +2662,17 @@ PrefabInstance:
       propertyPath: placer
       value: 
       objectReference: {fileID: 1226824282}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6af998b50b7098e21ae8f1f33cec4842,
+        type: 3}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc64bec69fad44c797b21a0f422261b, type: 3}
 --- !u!224 &1896953495 stripped
@@ -3223,6 +3245,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0268982fb6440bc4828c4311d13980d,
+        type: 3}
+    - target: {fileID: 7723106869463028396, guid: 4bc64bec69fad44c797b21a0f422261b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc64bec69fad44c797b21a0f422261b, type: 3}
