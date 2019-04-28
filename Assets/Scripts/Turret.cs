@@ -5,7 +5,9 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public TurretVariant[] variants;
+    public ColorVariant[] colorVariants;
     public int variant = 0;
+    public int colorVariant = 0;
 
     public Boolean disabled = false;
     
@@ -36,7 +38,6 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateColor(); // TODO detect color change
         projectilePool = GetComponent<GameObjectPool>();
     }
 
@@ -49,6 +50,7 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateColor();
         UpdateVariant();
         
         if (disabled)
@@ -65,24 +67,10 @@ public class Turret : MonoBehaviour
         ShootAtEnemy();
     }
     
-    void UpdateColor() 
+    void UpdateColor()
     {
-        Gradient g = new Gradient();
-        GradientColorKey[] gck = new GradientColorKey[2];
-        GradientAlphaKey[] gak = new GradientAlphaKey[2];
-        Color color1 = color;
-        Color color2 = new Color(0,0.2f,0);
-        gck[0].color = color1;
-        gck[0].time = 1.0F;
-        gck[1].color = color2;
-        gck[1].time = -1.0F;
-        
-        gak[0].alpha = 1.0F;
-        gak[0].time = 1.0F;
-        gak[1].alpha = 1.0F;
-        gak[1].time = -1.0F;
-        g.SetKeys(gck, gak);
-        gradient = g;
+        color = colorVariants[colorVariant].color;
+        gradient = colorVariants[colorVariant].gradient;
     }
     
     void UpdateVariant()

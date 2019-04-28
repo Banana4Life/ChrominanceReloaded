@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleLauncher: {fileID: 2166334189362856300}
-  splatterParticles: {fileID: 0}
   decalEmitterPrefab: {fileID: 5428678791231563410, guid: 56cee2da2aa68a544babfd3314e1a582,
     type: 3}
   particleColorGradient:
@@ -4881,7 +4880,12 @@ MonoBehaviour:
   - {fileID: 7267608866521626940, guid: 29be88bb70bd609a4abc94144fd8ac37, type: 3}
   - {fileID: 4651737755701822646, guid: 475f6137362b47d19a7dae97a233c5cd, type: 3}
   - {fileID: 8694951976365122560, guid: b3c20a341a629514688f4e6ae65c49b1, type: 3}
+  colorVariants:
+  - {fileID: 396089113638997954, guid: fcb26e91f632225d9890d25800addb51, type: 3}
+  - {fileID: 6706854013547704740, guid: 16af88f62daedf985bb6006b19a6b352, type: 3}
+  - {fileID: 1984972249240341426, guid: 3375ad8b7b4858273bfc03aa79d9e3e5, type: 3}
   variant: 0
+  colorVariant: 0
   disabled: 0
   head: {fileID: 786703651229517505}
   projectileContainer: {fileID: 5797215584362983433}
