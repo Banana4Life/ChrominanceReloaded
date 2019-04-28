@@ -115,7 +115,7 @@ public class Turret : MonoBehaviour
         isAimed = false;
         if (lockOnEnemy != null)
         {
-            aimLocation = getIntersection(lockOnEnemy);
+            aimLocation = getIntersection(lockOnEnemy.GetComponent<PathFollower>());
             if (aimLocation != Vector3.zero)
             {
                 var dir = aimLocation - transform.position;
@@ -165,7 +165,7 @@ public class Turret : MonoBehaviour
         
         if (lockOnEnemy != null)
         {
-            var enemy = lockOnEnemy.GetComponent<Enemy>();
+            var enemy = lockOnEnemy.GetComponent<PathFollower>();
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);    
         }
@@ -191,23 +191,21 @@ public class Turret : MonoBehaviour
         return angle;
     }
 
-    public Vector3 getIntersection(GameObject target)
+    public Vector3 getIntersection(PathFollower target)
     {
         return getIntersection(target, 0, 0);
     }
 
-    private Vector3 getIntersection(GameObject target, int iteration, float i)
+    private Vector3 getIntersection(PathFollower target, int iteration, float i)
     {
         
         Vector3 ownPosition = transform.position;
         float bulletSpeed = turretVariant.speed;
 
-        var targetEnemy = target.GetComponent<Enemy>();
+        Vector3 targetPosNext = target.GetPosAt(iteration + 1);
+        Vector3 targetPosition = target.GetPosAt(iteration);
 
-        Vector3 targetPosNext = targetEnemy.getPosAt(iteration + 1);
-        Vector3 targetPosition = targetEnemy.getPosAt(iteration);
-
-        Vector3 targetVelocity = targetPosNext - targetPosition;
+        Vector3 targetVelocity = (targetPosNext - targetPosition).normalized * target.speed;
 
 
         float partOne = 2f * ((targetVelocity.x * targetVelocity.x) + (targetVelocity.y * targetVelocity.y) - (bulletSpeed * bulletSpeed));
