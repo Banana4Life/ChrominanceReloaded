@@ -17,15 +17,6 @@ public class GridController : MonoBehaviour
         neighbors.Add(new Vector2Int(0, 1));
     }
 
-    private void Update()
-    {
-        var path = PathFinder.FindPath(this, new Vector2Int(-20, 0), new Vector2Int(20, 0));
-        if (path != null)
-        {
-            PathFinder.DebugRenderPath(this, path);
-        }
-    }
-
     private float CoordToCell(float coord)
     {
         return coord / cellSize;
