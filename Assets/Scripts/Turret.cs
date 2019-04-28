@@ -60,7 +60,7 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        if (lockOnEnemy == null)
+        if (lockOnEnemy == null || !lockOnEnemy.activeSelf)
         {
             lockOnEnemy = FindNewEnemy();
         }
@@ -105,8 +105,11 @@ public class Turret : MonoBehaviour
     {
         foreach (var enemy in FindObjectsOfType<Enemy>())
         {
-            //enemy.gameObject.transform.position
-            return enemy.gameObject;
+            if (enemy.gameObject.activeSelf)
+            {
+                // TODO improve targeting systems
+                return enemy.gameObject;
+            }
         }
 
         return null;
