@@ -1204,6 +1204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 1226824280}
   cam: {fileID: 519420031}
+  canvas: {fileID: 432724151}
 --- !u!4 &1235845669
 Transform:
   m_ObjectHideFlags: 0
@@ -1551,11 +1552,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTarget
       objectReference: {fileID: 0}
-    - target: {fileID: 3476488542556268613, guid: 5d69b444d078eb651b3f839b67392bd9,
-        type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 1226824280}
     - target: {fileID: 3476488542556268612, guid: 5d69b444d078eb651b3f839b67392bd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1611,6 +1607,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3476488542556268613, guid: 5d69b444d078eb651b3f839b67392bd9,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1226824280}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d69b444d078eb651b3f839b67392bd9, type: 3}
 --- !u!1001 &6155455988641560723

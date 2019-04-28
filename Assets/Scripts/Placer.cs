@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(GridController))]
 public abstract class Placer : MonoBehaviour
@@ -45,7 +46,7 @@ public abstract class Placer : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(mouseButton))
+            if (Input.GetMouseButtonDown(mouseButton) && !EventSystem.current.IsPointerOverGameObject())
             {
                 var cellPos = GetCellPos();
                 if (!grid.HasObjectAt(cellPos))
