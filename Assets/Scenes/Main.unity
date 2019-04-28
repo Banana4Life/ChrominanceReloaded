@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432724153}
   - component: {fileID: 432724152}
+  - component: {fileID: 432724154}
   m_Layer: 0
   m_Name: canvas
   m_TagString: Untagged
@@ -224,6 +225,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &432724154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432724151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.352177, y: 9.711334, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 7899023718119891635, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
       propertyPath: disabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2099638889270226677, guid: b534a9901b37aa08eac00c60bb7ffa46,
         type: 3}
@@ -774,8 +788,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   turretPrefab: {fileID: 7899023718119891633, guid: b534a9901b37aa08eac00c60bb7ffa46,
-    type: 3}
-  wallPrefab: {fileID: 4947702885791677311, guid: 36b6fc33c0cb57fdd9ae652443befd65,
     type: 3}
   variant: 0
 --- !u!1 &1235845667
@@ -982,6 +994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947702885791677311, guid: 36b6fc33c0cb57fdd9ae652443befd65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5200438858577541532, guid: 36b6fc33c0cb57fdd9ae652443befd65,
         type: 3}

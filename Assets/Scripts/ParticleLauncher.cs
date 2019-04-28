@@ -4,16 +4,21 @@ using UnityEngine;
 public class ParticleLauncher : MonoBehaviour {
 
     public ParticleSystem particleLauncher;
-    public ParticleSystem splatterParticles;
-    public ParticleDecalPool splatDecalPool;
+    public GameObject decalEmitterPrefab;
     public Gradient particleColorGradient;
 
     List<ParticleCollisionEvent> collisionEvents;
     private TurretVariant variant;
 
-    void Start () 
+    private static GameObject decalEmitter;
+
+    void Start ()
     {
         collisionEvents = new List<ParticleCollisionEvent> ();
+        if (decalEmitter == null)
+        {
+            decalEmitter = Instantiate(decalEmitterPrefab);
+        }
     }
 
     void OnParticleCollision(GameObject other)
@@ -22,10 +27,7 @@ public class ParticleLauncher : MonoBehaviour {
 
         foreach (var cEvent in collisionEvents)
         {
-            if (Random.Range (0f, 1f) > 0.5f)
-            {
-                splatDecalPool.ParticleHit (cEvent, particleColorGradient, other);
-            }
+            decalEmitter.GetComponent<ParticleDecalPool>().ParticleHit (cEvent, particleColorGradient, other);
             EmitAtLocation (cEvent);
         }
 
@@ -35,11 +37,13 @@ public class ParticleLauncher : MonoBehaviour {
 
     void EmitAtLocation(ParticleCollisionEvent particleCollisionEvent)
     {
+        /*
         splatterParticles.transform.position = particleCollisionEvent.intersection;
         splatterParticles.transform.rotation = Quaternion.LookRotation (particleCollisionEvent.normal);
         ParticleSystem.MainModule psMain = splatterParticles.main;
         psMain.startColor = particleColorGradient.Evaluate (Random.Range (0f, 1f));
         splatterParticles.Emit (1);
+        */
     }
 
     public void Shoot(TurretVariant variant, Color color, Gradient gradient)
