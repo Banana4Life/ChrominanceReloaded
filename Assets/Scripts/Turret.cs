@@ -89,18 +89,11 @@ public class Turret : MonoBehaviour
         if (isAimed && lastShot <= 0)
         {
             lastShot = turretVariant.shootCooldown;
-            var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
+            var offset = Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
             
-            var pla = head.GetComponent<ParticleLauncher>();
-            pla.Shoot(turretVariant, color, gradient);
-            
-            /* old Projectile
-            var obj = projectilePool.Get();
-            obj.transform.position = transform.position + offset;
-            obj.transform.rotation = Quaternion.Euler(0, 0, headAngle);
-            obj.GetComponent<Projectile>().variant = turretVariant;
-            */
+            var pla = head.GetComponentInChildren<ParticleLauncher>();
+            pla.Shoot(turretVariant, offset, gradient);
         }
 
         lastShot -= Time.deltaTime * 50;

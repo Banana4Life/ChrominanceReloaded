@@ -14,6 +14,7 @@ public class TurretVariant : MonoBehaviour
     public float speed = 2;
     public float offset = 0;
     public float maxRotationPerTick = 300;
+    public Vector3 launcherOffset = new Vector3(0, 0.72f, 0);
     
     private Dictionary<Color, Sprite> generatedSprites = new Dictionary<Color, Sprite>();
 

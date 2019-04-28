@@ -51,4 +51,4 @@ MonoBehaviour:
     type: 3}
   speed: 6
   offset: 0.2
-  maxRotationPerTick: 300
+  maxRotationPerTick: 50

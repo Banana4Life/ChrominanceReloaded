@@ -46,12 +46,10 @@ public class ParticleLauncher : MonoBehaviour {
         */
     }
 
-    public void Shoot(TurretVariant variant, Color color, Gradient gradient)
+    public void Shoot(TurretVariant variant, Vector3 offset, Gradient gradient)
     {
-        //var obj = projectilePool.Get();
-        //obj.transform.position = transform.position + offset;
-        //obj.transform.rotation = Quaternion.Euler(0, 0, headAngle);
-        //obj.GetComponent<Projectile>().variant = turretVariant;
+        particleLauncher.transform.localPosition = variant.launcherOffset + offset;
+        
         this.variant = variant;
         particleColorGradient = gradient;
         ParticleSystem.MainModule psMain = particleLauncher.main;
