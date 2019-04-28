@@ -29,12 +29,14 @@ public class Turret : MonoBehaviour
     private Boolean isAimed;
 
     public Color color = Color.green;
+    public Gradient gradient = new Gradient();
 
     private GameObjectPool projectilePool;
 
     // Start is called before the first frame update
     void Start()
     {
+        UpdateColor(); // TODO detect color change
         projectilePool = GetComponent<GameObjectPool>();
     }
 
@@ -63,6 +65,26 @@ public class Turret : MonoBehaviour
         ShootAtEnemy();
     }
     
+    void UpdateColor() 
+    {
+        Gradient g = new Gradient();
+        GradientColorKey[] gck = new GradientColorKey[2];
+        GradientAlphaKey[] gak = new GradientAlphaKey[2];
+        Color color1 = color;
+        Color color2 = new Color(0,0.2f,0);
+        gck[0].color = color1;
+        gck[0].time = 1.0F;
+        gck[1].color = color2;
+        gck[1].time = -1.0F;
+        
+        gak[0].alpha = 1.0F;
+        gak[0].time = 1.0F;
+        gak[1].alpha = 1.0F;
+        gak[1].time = -1.0F;
+        g.SetKeys(gck, gak);
+        gradient = g;
+    }
+    
     void UpdateVariant()
     {
         turretVariant = variants[variant];
@@ -81,10 +103,16 @@ public class Turret : MonoBehaviour
             lastShot = turretVariant.shootCooldown;
             var offset = Quaternion.Euler(0, 0, headAngle) * Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
+            
+            var pla = head.GetComponent<ParticleLauncher>();
+            pla.Shoot(turretVariant, color, gradient);
+            
+            /* old Projectile
             var obj = projectilePool.Get();
             obj.transform.position = transform.position + offset;
             obj.transform.rotation = Quaternion.Euler(0, 0, headAngle);
             obj.GetComponent<Projectile>().variant = turretVariant;
+            */
         }
 
         lastShot -= Time.deltaTime * 50;

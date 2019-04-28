@@ -45,6 +45,15 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void Damage(float amount)
+    {
+        health -= amount;
+        if (health < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public Vector3 getPosAt(int node)
     {
         // TODO predicted movement?
