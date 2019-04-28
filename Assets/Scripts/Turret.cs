@@ -35,6 +35,8 @@ public class Turret : MonoBehaviour
 
     private GameObjectPool projectilePool;
 
+    private float enemyIntersectTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -167,9 +169,12 @@ public class Turret : MonoBehaviour
         {
             var enemy = lockOnEnemy.GetComponent<PathFollower>();
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);    
+            Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);
+            
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, enemyIntersectTime * turretVariant.speed);
+            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemyIntersectTime * enemy.speed);
         }
-        
     }
 
 
@@ -196,33 +201,70 @@ public class Turret : MonoBehaviour
         return getIntersection(target, 0, 0);
     }
 
-    private Vector3 getIntersection(PathFollower target, int iteration, float i)
+    private Vector3 getIntersection(PathFollower pathFollower, int iteration, float ti)
     {
-        
-        Vector3 ownPosition = transform.position;
-        float bulletSpeed = turretVariant.speed;
-
-        Vector3 targetPosNext = target.GetPosAt(iteration + 1);
-        Vector3 targetPosition = target.GetPosAt(iteration);
-
-        Vector3 targetDirDelta = (targetPosNext - targetPosition);
-        Vector3 targetVelocity = targetDirDelta.normalized * target.speed;
-
-
-        float partOne = 2f * ((targetVelocity.x * targetVelocity.x) + (targetVelocity.y * targetVelocity.y) - (bulletSpeed * bulletSpeed));
-        float partTwo = 2f * ((targetPosition.x * targetVelocity.x) + (targetPosition.y * targetVelocity.y) - (ownPosition.x * targetVelocity.x) - (ownPosition.y * targetVelocity.y) - (i * bulletSpeed * bulletSpeed));
-        float partThree = (targetPosition.x * targetPosition.x) - (2f * targetPosition.x * ownPosition.x) + (targetPosition.y * targetPosition.y) - (2f * targetPosition.y * ownPosition.y) + (ownPosition.x * ownPosition.x) + (ownPosition.y * ownPosition.y) - (i * i * bulletSpeed * bulletSpeed);
-        
-        float x = (1f / partOne) * (-Mathf.Sqrt((partTwo * partTwo) - (2f * partOne * partThree)) - partTwo);
-
-        var targetInstersectDelta = targetVelocity * Mathf.Abs(x);
-        
-        if (targetInstersectDelta.sqrMagnitude > targetVelocity.sqrMagnitude)
+        if (iteration > 5)
         {
-            return getIntersection(target, iteration + 1, x + i);
+            return pathFollower.gameObject.transform.position;
         }
         
-        Vector3 intersectionPos = targetPosition + targetInstersectDelta;
+        Vector3 chaser = transform.position;
+        float vc = turretVariant.speed;
+
+        Vector3 target;
+        Vector3 targetNode;
+
+        if (iteration == 0)
+        {
+            target = pathFollower.gameObject.transform.position;
+            targetNode = pathFollower.GetPosAt(0);
+        }
+        else
+        {
+            target = pathFollower.GetPosAt(iteration - 1);
+            targetNode = pathFollower.GetPosAt(iteration);
+        }
+        
+        //targetNode = target + pathFollower.gameObject.transform.rotation * Vector3.forward * pathFollower.speed;
+
+        Vector3 vtRaw = (targetNode - target);
+        Vector3 vt = vtRaw.normalized * pathFollower.speed;
+
+        var dd = (chaser - target);
+        var alpha = Vector3.Angle(dd, vt) * Mathf.Deg2Rad;
+        
+        var t = calcTime(vc, dd.magnitude, vt, alpha);
+
+
+        var tvt = vt * t;
+        if (t > 1)
+        {
+            //return getIntersection(target, iteration + 1, t + ti);
+        }
+
+        enemyIntersectTime = t;
+        
+        Vector3 intersectionPos = target + tvt;
         return intersectionPos;
+    }
+
+    private static float calcTime(float vc, float d, Vector3 vt, float alpha)
+    {
+        var sqrVc = vc * vc;
+
+        //a = vc^2 - vt^2
+        var a = sqrVc - vt.sqrMagnitude;
+        //b = 2 * d * vt * cos(α)
+        var b = 2 * d * vt.magnitude * Mathf.Cos(alpha);
+        //c = - d2
+        var c = -(d * d);
+        
+        if (b*b - 4 * a * c < 0)
+        {
+            return 0;
+        }
+        
+        //t = (- b ± √(b^2 - 4 * a * c)) / (2 * a)
+        return (Mathf.Sqrt(b * b - 4 * a * c) -b) / (2 * a);
     }
 }
