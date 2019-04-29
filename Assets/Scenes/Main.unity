@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b6bbf622f55afbb93a8d56ea8e70e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
+  mainCamera: {fileID: 0}
   cellSize: 1
 --- !u!4 &1226824281
 Transform:
@@ -1702,8 +1702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1226824280}
-  buildInCell: {r: 0, g: 1, b: 0, a: 0}
-  removeInCell: {r: 1, g: 0, b: 0, a: 0}
+  buildInCell: {r: 0, g: 0, b: 0, a: 0}
+  removeInCell: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1235845669
 Transform:
   m_ObjectHideFlags: 0
