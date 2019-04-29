@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b6bbf622f55afbb93a8d56ea8e70e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 519420031}
   cellSize: 1
 --- !u!4 &1226824281
 Transform:
@@ -2734,6 +2734,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBase
       objectReference: {fileID: 0}
+    - target: {fileID: 208049766011028895, guid: eb682a08208311e93b652f94aeb9b97b,
+        type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1226824280}
     - target: {fileID: 208049765532347339, guid: eb682a08208311e93b652f94aeb9b97b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2790,11 +2795,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 208049765532347336, guid: eb682a08208311e93b652f94aeb9b97b,
-        type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 1226824280}
-    - target: {fileID: 208049766011028895, guid: eb682a08208311e93b652f94aeb9b97b,
         type: 3}
       propertyPath: grid
       value: 
