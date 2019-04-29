@@ -21,7 +21,6 @@ public class PlayerBaseController : MonoBehaviour
 
     public void EnemyReached(Enemy enemy)
     {
-        Debug.Log("Enemy reached base!");
         enemy.Die();
     }
 }

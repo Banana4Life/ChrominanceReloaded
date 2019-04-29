@@ -25,6 +25,8 @@ public class PathFollower : MonoBehaviour
     public PathTarget target;
     public float speed = 5;
 
+    public bool debug;
+
     private List<Vector2Int> currentPath;
     private float pathCalculatedAt;
     private int pathIndex;
@@ -68,7 +70,10 @@ public class PathFollower : MonoBehaviour
     {
         if (currentPath != null)
         {
-            PathFinder.DebugRenderPath(target.grid, currentPath);
+            if (debug)
+            {
+                PathFinder.DebugRenderPath(target.grid, currentPath);
+            }
             var distance = currentTargetCell - transform.position;
             transform.position += Time.deltaTime * speed * distance.normalized;
             
