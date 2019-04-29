@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     public void Damage(float amount)
     {
         health -= amount;
-        if (health < 0)
+        if (health <= 0)
         {
             Die();
         }
