@@ -47,15 +47,18 @@ public class ColorPicker : MonoBehaviour
 
                 var obj = grid.GetObjectAt(cellPos);
                 var floaterComp = floater.GetComponent<Floater>();
+                bool noMess = false;
                 if (obj)
                 {
                     var turret = obj.GetComponent<Turret>();
                     if (turret)
                     {
                         turret.FillTank(floaterComp.color);
+                        noMess = true;
                     }
                 }
-                else
+
+                if (!noMess)
                 {
                     for (int i = 0; i < Random.Range(3, 8); i++)
                     {

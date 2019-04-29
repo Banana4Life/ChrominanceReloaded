@@ -47,12 +47,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Splat
+    uniqueID: 1947441815
+    locked: 0
+  - name: Wall
+    uniqueID: 4207797559
+    locked: 0
   - name: Turrets
     uniqueID: 2398013889
+    locked: 0
+  - name: Enemy
+    uniqueID: 3064736509
     locked: 0
   - name: Projectiles
     uniqueID: 3016232061
     locked: 0
   - name: Highlight
     uniqueID: 400022541
+    locked: 0
+  - name: Floater
+    uniqueID: 1843764175
     locked: 0
