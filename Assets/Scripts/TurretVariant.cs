@@ -20,35 +20,17 @@ public class TurretVariant : MonoBehaviour
     public Vector3 launcherOffset = new Vector3(0, 0.72f, 0);
     public int tankSize = 100;
     
-    private Dictionary<Color, Sprite> generatedSprites = new Dictionary<Color, Sprite>();
-
-    private static Sprite generateSprite(Sprite origSprite, Color color)
-    {
-        Texture2D orig = origSprite.texture;
-        Texture2D texture = new Texture2D(orig.width, orig.height);
-        for (int y = 0; y < orig.height; y++)
-        {
-            for (int x = 0; x < orig.width; x++)
-            {
-                var col = orig.GetPixel(x,y);
-                if (col == Color.magenta)
-                {
-                    col = color;
-                }
-                texture.SetPixel(x, y, col);
-            }
-        }
-        texture.Apply();
-        return Sprite.Create(texture, origSprite.rect, new Vector2(0.5f, 0.5f));
-    }
+    private Dictionary<String, Sprite> sprites = new Dictionary<String, Sprite>();
 
     public Sprite getBaseSprite()
     {
-        return spriteAtlas.GetSprite("base");
+        init();
+        return sprites["base"];
     }
 
     public Sprite getHeadSprite(int tankState)
     {
+        init();
         String state;
         var pCent = 100 * tankState / tankSize;
         if (pCent > 66)
@@ -67,12 +49,21 @@ public class TurretVariant : MonoBehaviour
         {
             state = "empty";
         }
-        return spriteAtlas.GetSprite(state);
-    }
+
+        return sprites[state];
+}
     
     // Start is called before the first frame update
-    void Start()
+    private void init()
     {
+        if (sprites.Count == 0)
+        {
+            sprites.Add("base", spriteAtlas.GetSprite("base"));
+            sprites.Add("full", spriteAtlas.GetSprite("full"));
+            sprites.Add("empty", spriteAtlas.GetSprite("empty"));
+            sprites.Add("half_full", spriteAtlas.GetSprite("half_full"));
+            sprites.Add("half_empty", spriteAtlas.GetSprite("half_empty"));    
+        }
     }
 
     // Update is called once per frame
