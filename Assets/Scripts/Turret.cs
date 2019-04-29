@@ -325,5 +325,6 @@ public class Turret : MonoBehaviour
             }
         }
         tankState = turretVariant.tankSize;
+        FindNewEnemy();
     }
 }

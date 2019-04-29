@@ -100,7 +100,7 @@ public class EnemySource : MonoBehaviour
         var enemies = new HashSet<GameObject>();
         foreach (var spawnPoint in spawnPoints)
         {
-            var enemyCount = UnityEngine.Random.Range(waveNumber + difficulty, 5 * waveNumber * difficulty);
+            var enemyCount = UnityEngine.Random.Range(waveNumber + difficulty, 5 + waveNumber * difficulty);
             var list = new Queue<SpawnConfig>(enemyCount);
             waveConfigs.Add(spawnPoint, list);
             for (var i = 0; i < enemyCount; i++)
