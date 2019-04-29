@@ -142,6 +142,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   sprites: {fileID: 4343727234628468602, guid: 410c414921eb406209a0e1d342b1312e, type: 2}
+  currentConfig:
+    weight: 0
+    kind: 
+    color: {r: 0, g: 0, b: 0, a: 0}
+    health: 0
+    spinSpeed: 0
+    walkSpeed: 0
 --- !u!114 &7761258674137929628
 MonoBehaviour:
   m_ObjectHideFlags: 0
