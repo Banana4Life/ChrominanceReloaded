@@ -28,12 +28,18 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health < 0)
         {
-            gameObject.SetActive(false);
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
     }
 
     public void Configure(SpawnConfig config, EnemyTarget target)
     {
+        // just for reference
         currentConfig = config;
         
         spriteRenderer.sprite = sprites.GetSprite(currentConfig.kind);
