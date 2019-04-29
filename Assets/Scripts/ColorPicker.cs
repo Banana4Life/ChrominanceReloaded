@@ -9,7 +9,7 @@ public class ColorPicker : MonoBehaviour
     public Camera cam;
     private Vector2Int cellClicked;
 
-    public GameObject floater;
+    private GameObject floater;
 
     private void Awake()
     {
