@@ -12,11 +12,11 @@ public class TileHighlighter : MonoBehaviour
     private SpriteRenderer r;
     private Vector2Int currentCell;
     private float cellSwitchedAt;
-    private bool canBuild;
     
     void Awake()
     {
         r = GetComponentInChildren<SpriteRenderer>();
+        r.drawMode = SpriteDrawMode.Tiled;
         r.size = Vector2.one * grid.cellSize;
         
         currentCell = grid.MouseToCell();
@@ -32,13 +32,12 @@ public class TileHighlighter : MonoBehaviour
             currentCell = newCell;
             cellSwitchedAt = Time.time;
             UpdateHighlight();
-            r.color = canBuild ? buildInCell :removeInCell;
         }
     }
 
     private void UpdateHighlight()
     {
-        canBuild = grid.HasObjectAt(currentCell);
         transform.position = grid.CellToCellCorner(currentCell);
+        r.color = grid.HasObjectAt(currentCell) ? removeInCell : buildInCell;
     }
 }
