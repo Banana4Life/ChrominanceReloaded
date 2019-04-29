@@ -9,7 +9,8 @@ public class PathFollower : MonoBehaviour
     public float speed = 5;
 
     private List<Vector2Int> currentPath;
-    private int pathIndex = 0;
+    private float pathCalculatedAt;
+    private int pathIndex;
     private Vector3 currentTargetCell;
 
     private void OnDisable()
@@ -22,9 +23,10 @@ public class PathFollower : MonoBehaviour
     {
         if (target)
         {
-            if (currentPath == null || target.grid.IsDirty())
+            if (currentPath == null)
             {
                 currentPath = target.FindPathFrom(transform.position);
+                pathCalculatedAt = Time.time;
                 if (currentPath != null)
                 {
                     pathIndex = 0;
@@ -39,6 +41,12 @@ public class PathFollower : MonoBehaviour
                 transform.position += Time.deltaTime * speed * distance.normalized;
                 if (distance.magnitude < target.grid.cellSize / 8f)
                 {
+                    if (target.grid.HasChangedSince(pathCalculatedAt))
+                    {
+                        // grid changed, recalculate
+                        currentPath = null;
+                        return;
+                    }
                     pathIndex++;
                     if (pathIndex >= currentPath.Count)
                     {
