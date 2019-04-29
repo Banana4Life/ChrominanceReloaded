@@ -21,12 +21,13 @@ public class PathFinder
         {
             // get the node closest to the target
             var current = nodeQueue.OrderBy(n => (n - target).sqrMagnitude).First();
-            nodeQueue.Remove(current);
-            known.Add(current);
             if (current == target)
             {
                 break;
             }
+            
+            nodeQueue.Remove(current);
+            known.Add(current);
 
             var path = paths[current];
             var distance = distances[current];
