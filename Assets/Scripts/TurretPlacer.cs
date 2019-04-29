@@ -17,7 +17,9 @@ public class TurretPlacer : Placer
     {
         var tower = Instantiate(turretPrefab);
         tower.transform.position = grid.CellToCellCenter(gridPos);
-        tower.GetComponent<Turret>().variant = variant;
+        var turret = tower.GetComponent<Turret>();
+        turret.variant = variant;
+        turret.tankState = turret.getVariant().tankSize;
         return tower;
     }
 }

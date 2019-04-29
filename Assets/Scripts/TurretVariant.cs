@@ -18,6 +18,7 @@ public class TurretVariant : MonoBehaviour
     public float offset = 0;
     public float maxRotationPerTick = 300;
     public Vector3 launcherOffset = new Vector3(0, 0.72f, 0);
+    public int tankSize = 100;
     
     private Dictionary<Color, Sprite> generatedSprites = new Dictionary<Color, Sprite>();
 
@@ -46,10 +47,27 @@ public class TurretVariant : MonoBehaviour
         return spriteAtlas.GetSprite("base");
     }
 
-    public Sprite getHeadSprite(ColorVariant variant)
+    public Sprite getHeadSprite(int tankState)
     {
-        // TODO return based on state
-        return spriteAtlas.GetSprite("half_empty");
+        String state;
+        var pCent = 100 * tankState / tankSize;
+        if (pCent > 66)
+        {
+            state = "full";
+        }
+        else if (pCent > 33)
+        {
+            state = "half_full";
+        }
+        else if (pCent > 0)
+        {
+            state = "half_empty";
+        }
+        else
+        {
+            state = "empty";
+        }
+        return spriteAtlas.GetSprite(state);
     }
     
     // Start is called before the first frame update

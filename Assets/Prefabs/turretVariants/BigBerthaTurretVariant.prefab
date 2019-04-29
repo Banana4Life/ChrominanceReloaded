@@ -54,3 +54,4 @@ MonoBehaviour:
   offset: 0
   maxRotationPerTick: 150
   launcherOffset: {x: 0, y: 0.72, z: 0}
+  tankSize: 15

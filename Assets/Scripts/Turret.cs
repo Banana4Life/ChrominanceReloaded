@@ -10,6 +10,8 @@ public class Turret : MonoBehaviour
     [Range(0,2)]
     public int colorVariant = 0;
 
+    public int tankState;
+
     public Boolean disabled = false;
     
     private TurretVariant turretVariant;
@@ -26,6 +28,7 @@ public class Turret : MonoBehaviour
     private Vector3 aimLocation;
     private float offsetLR = -1f;
     private float lastShot;
+
 
     [Header("Self Reference")]
     public GameObject head;
@@ -80,20 +83,21 @@ public class Turret : MonoBehaviour
         projectilePool.prefab = turretVariant.projectile;
         name = turretVariant.displayName;
         
-        headRenderer.sprite = turretVariant.getHeadSprite(turretColorVariant);
+        headRenderer.sprite = turretVariant.getHeadSprite(tankState);
         headRenderer.color = turretColorVariant.color;
         baseRenderer.sprite = turretVariant.getBaseSprite();
     }
 
     void ShootAtEnemy()
     {
-        if (isAimed && lastShot <= 0)
+        if (tankState > 0 && isAimed && lastShot <= 0)
         {
             lastShot = turretVariant.shootCooldown;
             var offset = Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
             
             launcher.Shoot(turretVariant, offset, turretColorVariant.gradient);
+            tankState--;
         }
 
         lastShot -= Time.deltaTime * 50;
