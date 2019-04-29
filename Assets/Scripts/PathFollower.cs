@@ -22,7 +22,7 @@ public class PathFollower : MonoBehaviour
     {
         if (target)
         {
-            if (currentPath == null)
+            if (currentPath == null || target.grid.IsDirty())
             {
                 currentPath = target.FindPathFrom(transform.position);
                 if (currentPath != null)

@@ -9,6 +9,7 @@ public class GridController : MonoBehaviour
     public float cellSize = 1f;
     private readonly Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
     private readonly List<Vector2Int> neighbors = new List<Vector2Int>();
+    private bool dirty;
 
     public GridController()
     {
@@ -16,6 +17,16 @@ public class GridController : MonoBehaviour
         neighbors.Add(new Vector2Int(0, -1));
         neighbors.Add(new Vector2Int(-1, 0));
         neighbors.Add(new Vector2Int(0, 1));
+    }
+
+    private void LateUpdate()
+    {
+        dirty = false;
+    }
+
+    public bool IsDirty()
+    {
+        return dirty;
     }
 
     private float CoordToCell(float coord)
@@ -117,6 +128,7 @@ public class GridController : MonoBehaviour
             inner.Add(cell.y, obj);
         }
 
+        dirty = true;
         return existing;
     }
 

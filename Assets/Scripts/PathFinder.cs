@@ -7,8 +7,10 @@ using Priority_Queue;
 
 public class PathFinder
 {
-    public const uint MaxIterations = 1000;
-    public const int TowerCost = 10000;
+    public const uint MaxIterations = 10000;
+    public const int TowerCost = 40;
+    public const int WallCost = TowerCost;
+    public const int DefaultBlockedCost = TowerCost;
     public const int EmptyCost = 1;
 
     private static float EstimateCost(Vector2Int from, Vector2Int to)
@@ -16,20 +18,37 @@ public class PathFinder
         return (to - from).sqrMagnitude;
     }
 
-    public static int GetCost(GridController g, Vector2Int from, Vector2Int to)
+    public static float GetCost(GridController g, Vector2Int current, Vector2Int next)
     {
-        if (g.HasObjectAt(to) || g.HasObjectAt(from))
+        return Mathf.Max(GetCost(g, current), GetCost(g, next));
+    }
+
+    public static float GetCost(GridController g, Vector2Int node)
+    {
+        var gameObject = g.GetObjectAt(node);
+        if (gameObject == null)
         {
-            return TowerCost;
+            return EmptyCost * g.cellSize;
         }
-        return EmptyCost;
+        
+        if (gameObject.CompareTag("tower"))
+        {
+            return TowerCost * g.cellSize;
+        }
+
+        if (gameObject.CompareTag("wall"))
+        {
+            return WallCost * g.cellSize;
+        }
+        
+        return DefaultBlockedCost * g.cellSize;
     }
     
-    public static KeyValuePair<List<Vector2Int>, int> ShortestPath(GridController g, Vector2Int source, Vector2Int target)
+    public static KeyValuePair<List<Vector2Int>, float> ShortestPath(GridController g, Vector2Int source, Vector2Int target)
     {
         var nodeQueue = new SimplePriorityQueue<Vector2Int, float>();
         var known = new HashSet<Vector2Int>();
-        var distances = new Dictionary<Vector2Int, int>();
+        var distances = new Dictionary<Vector2Int, float>();
         var paths = new Dictionary<Vector2Int, List<Vector2Int>>();
 
         nodeQueue.Enqueue(source, EstimateCost(source, target));
@@ -63,15 +82,15 @@ public class PathFinder
                     distances[node] = newDistance;
                     paths[node] = newPath;
                 }
-                nodeQueue.Enqueue(node, EstimateCost(node, target));
+                nodeQueue.Enqueue(node, distances[node] + EstimateCost(node, target));
             }
         }
 
         if (paths.ContainsKey(target))
         {
-            return new KeyValuePair<List<Vector2Int>, int>(paths[target], distances[target]);
+            return new KeyValuePair<List<Vector2Int>, float>(paths[target], distances[target]);
         }
-        return new KeyValuePair<List<Vector2Int>, int>();
+        return new KeyValuePair<List<Vector2Int>, float>();
     }
 
     public static List<Vector2Int> FindPath(GridController g, Vector2Int source, Vector2Int target)
@@ -80,7 +99,7 @@ public class PathFinder
         return shortestPath.Key;
     }
 
-    public static int FindDistance(GridController g, Vector2Int source, Vector2Int target)
+    public static float FindDistance(GridController g, Vector2Int source, Vector2Int target)
     {
         var shortestPath = ShortestPath(g, source, target);
         if (shortestPath.Key == null)
