@@ -142,7 +142,7 @@ public struct SpawnConfig
 {
     public float weight;
     public string kind;
-    public Color color;
+    public ColorType color;
     public float health;
     public float spinSpeed;
     public float walkSpeed;

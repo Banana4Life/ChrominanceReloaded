@@ -8,9 +8,9 @@ public class PlayerBaseController : MonoBehaviour
     public GridController grid;
     public PlayerBaseController playerBase;
     
-    public int redHealth = 1000;
-    public int greenHealth = 1000;
-    public int blueHealth = 1000;
+    public float redAmount = 1000;
+    public float greenAmount = 1000;
+    public float blueAmount = 1000;
 
     public Vector2Int gridLocation = Vector2Int.zero;
 
@@ -21,6 +21,19 @@ public class PlayerBaseController : MonoBehaviour
 
     public void EnemyReached(Enemy enemy)
     {
+        switch (enemy.color)
+        {
+            case ColorType.Red:
+                redAmount -= enemy.health;
+                break;
+            case ColorType.Green:
+                greenAmount -= enemy.health;
+                break;
+            case ColorType.Blue:
+                blueAmount -= enemy.health;
+                break;
+        }
+
         enemy.Die();
     }
 }

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public float health = 100;
     public SpriteAtlas sprites;
+    public ColorType color;
     
     // for viewing only
     public SpawnConfig currentConfig;
@@ -48,9 +49,21 @@ public class Enemy : MonoBehaviour
         // just for reference
         currentConfig = config;
         currentWave = wave;
+        color = config.color;
         
         spriteRenderer.sprite = sprites.GetSprite(currentConfig.kind);
-        spriteRenderer.color = currentConfig.color;
+        switch (currentConfig.color)
+        {
+            case ColorType.Red:
+                spriteRenderer.color = Color.red;
+                break;
+            case ColorType.Green:
+                spriteRenderer.color = Color.green;
+                break;
+            case ColorType.Blue:
+                spriteRenderer.color = Color.blue;
+                break;
+        }
         
         health = currentConfig.health;
         
@@ -60,4 +73,9 @@ public class Enemy : MonoBehaviour
         pathFollower.target = target;
         pathFollower.UpdatePath(path.path, path.calculatedAt);
     }
+}
+
+public enum ColorType
+{
+    Red, Green, Blue
 }
