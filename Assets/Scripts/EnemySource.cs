@@ -136,6 +136,11 @@ public class Wave
         size = configs.Select(e => e.Value.Count).Sum();
     }
 
+    public ISet<GameObject> GetLivingEnemies()
+    {
+        return enemies;
+    }
+
     public int EnemiesLeft()
     {
         return size - killed;

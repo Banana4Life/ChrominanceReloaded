@@ -41,9 +41,11 @@ public class Turret : MonoBehaviour
     public TurretVariant[] variants;
     public ColorVariant[] colorVariants;
 
-    // Start is called before the first frame update
-    void Start()
+    private EnemySource enemySource;
+
+    private void Awake()
     {
+        enemySource = FindObjectOfType<EnemySource>();
     }
 
     public TurretVariant getVariant()
@@ -63,7 +65,7 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        if (lockOnEnemy == null || !lockOnEnemy.activeSelf)
+        if (!lockOnEnemy || !lockOnEnemy.activeInHierarchy)
         {
             lockOnEnemy = FindNewEnemy();
         }
@@ -105,13 +107,30 @@ public class Turret : MonoBehaviour
 
     GameObject FindNewEnemy()
     {
-        foreach (var enemy in FindObjectsOfType<Enemy>())
+        var enumerator = enemySource.GetCurrentWave().GetLivingEnemies().GetEnumerator();
+        try
         {
-            if (enemy.gameObject.activeSelf)
+            if (enumerator.MoveNext())
             {
-                // TODO improve targeting systems
-                return enemy.gameObject;
+                var closest = enumerator.Current;
+                var shortestDistanceSqr = (transform.position - closest.transform.position).sqrMagnitude;
+                while (enumerator.MoveNext())
+                {
+                    var next = enumerator.Current;
+                    var nextDistanceSqr = (transform.position - next.transform.position).sqrMagnitude;
+                    if (nextDistanceSqr < shortestDistanceSqr)
+                    {
+                        closest = next;
+                        shortestDistanceSqr = nextDistanceSqr;
+                    }
+                }
+
+                return closest;
             }
+        }
+        finally
+        {
+            enumerator.Dispose();
         }
 
         return null;
@@ -120,7 +139,7 @@ public class Turret : MonoBehaviour
     void AimAtEnemy()
     {
         isAimed = false;
-        if (lockOnEnemy != null)
+        if (!lockOnEnemy)
         {
             aimLocation = getIntersection(lockOnEnemy.GetComponent<PathFollower>());
             if (aimLocation != Vector3.zero)
