@@ -10,6 +10,7 @@ public class ColorPicker : MonoBehaviour
     private Vector2Int cellClicked;
 
     private GameObject floater;
+    public GameObject floaterPrefab;
 
     private void Awake()
     {
@@ -34,7 +35,8 @@ public class ColorPicker : MonoBehaviour
                 
                 if (obj.GetComponent<Floater>())
                 {
-                    floater = Instantiate(obj, transform);
+                    floater = Instantiate(floaterPrefab, transform);
+                    floater.GetComponent<Floater>().color = obj.GetComponent<Floater>().color;
                 }
             }
         }

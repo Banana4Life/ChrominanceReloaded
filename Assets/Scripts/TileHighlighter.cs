@@ -8,17 +8,17 @@ public class TileHighlighter : MonoBehaviour
     public GridController grid;
     public Color buildInCell;
     public Color removeInCell;
-    
+
     private SpriteRenderer r;
     private Vector2Int currentCell;
     private float cellSwitchedAt;
-    
+
     void Awake()
     {
         r = GetComponentInChildren<SpriteRenderer>();
         r.drawMode = SpriteDrawMode.Tiled;
         r.size = Vector2.one * grid.cellSize;
-        
+
         currentCell = grid.MouseToCell();
         UpdateHighlight();
     }
@@ -33,20 +33,47 @@ public class TileHighlighter : MonoBehaviour
             cellSwitchedAt = Time.time;
             UpdateHighlight();
         }
+
+        UpdateHover();
+    }
+
+    private void UpdateHover()
+    {
+        var gridObj = grid.GetObjectAt(currentCell);
+        if (gridObj)
+        {
+            var floaterComp = gridObj.GetComponent<Floater>();
+            if (floaterComp)
+            {
+                floaterComp.hovered = 0.05f;
+            }
+        }
     }
 
     private void UpdateHighlight()
     {
         transform.position = grid.CellToCellCorner(currentCell);
-        if (FindObjectOfType<ColorPicker>().isActive())
+        var colorPicker = FindObjectOfType<ColorPicker>();
+        if (colorPicker.isActive())
         {
             r.enabled = false;
         }
         else
         {
             r.enabled = true;
-            r.color = grid.HasObjectAt(currentCell) ? removeInCell : buildInCell;
+            var gridObj = grid.GetObjectAt(currentCell);
+            if (gridObj)
+            {
+                var floaterComp = gridObj.GetComponent<Floater>();
+                if (!floaterComp)
+                {
+                    r.color = removeInCell;
+                }
+            }
+            else
+            {
+                r.color = buildInCell;
+            }
         }
-        
     }
 }

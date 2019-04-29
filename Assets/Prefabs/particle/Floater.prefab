@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7945640842042825617}
   - component: {fileID: 2076812647781575861}
   m_Layer: 0
-  m_Name: SplatterEmitter
+  m_Name: Floater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1843764175
-  m_SortingLayer: 2
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 1
   m_SortMode: 0
@@ -701,7 +701,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0.2
     radius:
-      value: 0.0001
+      value: 0.1
       mode: 0
       spread: 0
       speed:
