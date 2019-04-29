@@ -10,7 +10,7 @@ public class ParticleLauncher : MonoBehaviour {
     List<ParticleCollisionEvent> collisionEvents;
     private TurretVariant variant;
 
-    private static GameObject decalEmitter;
+    public static GameObject decalEmitter;
 
     void Start ()
     {
@@ -27,7 +27,7 @@ public class ParticleLauncher : MonoBehaviour {
 
         foreach (var cEvent in collisionEvents)
         {
-            decalEmitter.GetComponent<ParticleDecalPool>().ParticleHit (cEvent, particleColorGradient, other);
+            decalEmitter.GetComponent<ParticleDecalPool>().ParticleHit (particleColorGradient, other.transform.position);
             EmitAtLocation (cEvent);
         }
 

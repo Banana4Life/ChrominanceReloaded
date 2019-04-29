@@ -22,25 +22,21 @@ public class ParticleDecalPool : MonoBehaviour {
         }
     }
 
-    public void ParticleHit(ParticleCollisionEvent particleCollisionEvent, Gradient colorGradient, GameObject other)
+    public void ParticleHit(Gradient colorGradient, Vector3 position)
     {
-        SetParticleData (particleCollisionEvent, colorGradient, other);
+        SetParticleData (colorGradient, position);
         DisplayParticles ();
     }
 
-    void SetParticleData(ParticleCollisionEvent particleCollisionEvent, Gradient colorGradient, GameObject other)
+    void SetParticleData(Gradient colorGradient, Vector3 position)
     {
         if (particleDecalDataIndex >= maxDecals) 
         {
             particleDecalDataIndex = 0;
         }
 
-        particleData[particleDecalDataIndex].position = other.transform.position; //particleCollisionEvent.intersection;
-        Vector3 particleRotationEuler = Quaternion.LookRotation (particleCollisionEvent.normal).eulerAngles;
-        particleRotationEuler.z = Random.Range (0, 360);
-        particleRotationEuler.x = 0;
-        particleRotationEuler.x = 0;
-        particleData [particleDecalDataIndex].rotation = particleRotationEuler;
+        particleData[particleDecalDataIndex].position = position; //particleCollisionEvent.intersection;
+        particleData [particleDecalDataIndex].rotation = new Vector3(0, 0,  Random.Range (0, 360));
         particleData [particleDecalDataIndex].size = Random.Range (decalSizeMin, decalSizeMax);
         particleData [particleDecalDataIndex].color = colorGradient.Evaluate (Random.Range (0f, 1f));
 

@@ -46,12 +46,20 @@ public class ColorPicker : MonoBehaviour
                 var cellPos = grid.MouseToCell();
 
                 var obj = grid.GetObjectAt(cellPos);
+                var floaterComp = floater.GetComponent<Floater>();
                 if (obj)
                 {
                     var turret = obj.GetComponent<Turret>();
                     if (turret)
                     {
-                        turret.FillTank(floater.GetComponent<Floater>().color);
+                        turret.FillTank(floaterComp.color);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Random.Range(3, 8); i++)
+                    {
+                        ParticleLauncher.decalEmitter.GetComponent<ParticleDecalPool>().ParticleHit (floaterComp.color.gradient, floater.transform.position);
                     }
                 }
                 Destroy(floater);
