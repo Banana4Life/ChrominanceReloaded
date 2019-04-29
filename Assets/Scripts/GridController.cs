@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
+    public Camera mainCamera;
     public float cellSize = 1f;
-    private Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
-    private List<Vector2Int> neighbors = new List<Vector2Int>();
+    private readonly Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
+    private readonly List<Vector2Int> neighbors = new List<Vector2Int>();
 
     public GridController()
     {
@@ -20,6 +21,21 @@ public class GridController : MonoBehaviour
     private float CoordToCell(float coord)
     {
         return coord / cellSize;
+    }
+
+    public Vector2Int MouseToCell()
+    {
+        return WorldToCell(mainCamera.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    public Vector3 MouseToCellCenter(float z = 0)
+    {
+        return CellToCellCenter(MouseToCell(), z);
+    }
+
+    public Vector3 MouseToCellCorner(float z = 0)
+    {
+        return CellToCellCorner(MouseToCell(), z);
     }
 
     public Vector3 WorldToCellCorner(Vector3 world)
@@ -44,15 +60,15 @@ public class GridController : MonoBehaviour
         return new Vector2Int((int) Mathf.Floor(CoordToCell(world.x)), (int) Mathf.Floor(CoordToCell(world.y)));
     }
 
-    public Vector3 CellToCellCorner(Vector2Int cell)
+    public Vector3 CellToCellCorner(Vector2Int cell, float z = 0)
     {
-        return new Vector3(cell.x * cellSize, cell.y * cellSize, transform.position.z);
+        return new Vector3(cell.x * cellSize, cell.y * cellSize, z);
     }
 
-    public Vector3 CellToCellCenter(Vector2Int cell)
+    public Vector3 CellToCellCenter(Vector2Int cell, float z = 0)
     {
         var halfCell = cellSize / 2f;
-        return new Vector3(cell.x * cellSize + halfCell, cell.y * cellSize + halfCell, transform.position.z);
+        return new Vector3(cell.x * cellSize + halfCell, cell.y * cellSize + halfCell, z);
     }
 
     public GameObject GetObjectAt(Vector2Int cell)

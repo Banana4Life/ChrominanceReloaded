@@ -51,6 +51,11 @@ public class EnemySource : MonoBehaviour
 
         return Util.chooseWeighted(weights, configs);
     }
+
+    public bool CanReachTarget()
+    {
+        return target && PathFinder.ExistsPathBetween(grid, grid.WorldToCell(transform.position), target.GetCell());
+    }
 }
 
 [Serializable]

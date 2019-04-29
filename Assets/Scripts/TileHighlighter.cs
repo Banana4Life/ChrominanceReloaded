@@ -1,35 +1,49 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class TileHighlighter : MonoBehaviour
 {
     public GridController grid;
-    public Camera cam;
-
-    private SpriteRenderer spriteRenderer;
-    private Texture2D texture;
-    private Sprite whiteSprite;
+    public Color validCellColor;
+    public Color invalidCellColor;
     
-    void Start()
+    private EnemySource[] sources;
+    private SpriteRenderer spriteRenderer;
+    private Vector2Int currentCell;
+    
+    void Awake()
     {
-        texture = new Texture2D(1, 1);
-        texture.SetPixel(1, 1, Color.white);
-        whiteSprite = Sprite.Create(texture, new Rect(Vector2.zero, Vector2.one), Vector2.zero);
-
-        transform.position = cam.ScreenToWorldPoint(Input.mousePosition);
-        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = whiteSprite;
-        spriteRenderer.drawMode = SpriteDrawMode.Tiled;
-        spriteRenderer.sortingLayerName = "Default";
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentCell = grid.MouseToCell();
         spriteRenderer.size = Vector2.one * grid.cellSize;
-        spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+        spriteRenderer.color = invalidCellColor;
+        sources = FindObjectsOfType<EnemySource>();
+        UpdateHighlight();
     }
 
     void Update()
     {
-        var worldPos = grid.WorldToCellCorner(cam.ScreenToWorldPoint(Input.mousePosition));
+        var newCell = grid.MouseToCell();
+        if (currentCell != newCell)
+        {
+            currentCell = newCell;
+            UpdateHighlight();
+        }
+    }
+
+    private void UpdateHighlight()
+    {
+        if (sources.Any(s => !s.CanReachTarget()))
+        {
+            spriteRenderer.color = invalidCellColor;
+        }
+        else
+        {
+            spriteRenderer.color = validCellColor;
+        }
         spriteRenderer.size = Vector2.one * grid.cellSize;
-        transform.position = new Vector3(worldPos.x, worldPos.y, 0);
+        transform.position = grid.CellToCellCorner(currentCell);
     }
 }

@@ -53,11 +53,6 @@ public class PathFollower : MonoBehaviour
         }
     }
 
-    public Vector3 GetVelocity()
-    {
-        return (currentTargetCell - transform.position).normalized * speed;
-    }
-
     public Vector3 GetPosAt(int node)
     {
         var requestedNode = pathIndex + node;

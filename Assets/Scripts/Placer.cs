@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(GridController))]
 public abstract class Placer : MonoBehaviour
 {
-    public Camera cam;
     public readonly int mouseButton;
     
     protected GridController grid;
@@ -26,7 +25,7 @@ public abstract class Placer : MonoBehaviour
 
     private Vector2Int GetCellPos()
     {
-        return grid.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
+        return grid.MouseToCell();
     }
 
     // Update is called once per frame
