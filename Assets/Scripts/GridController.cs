@@ -10,6 +10,11 @@ public class GridController : MonoBehaviour
     private readonly Dictionary<int, Dictionary<int, GameObject>> objects = new Dictionary<int, Dictionary<int, GameObject>>();
     private readonly List<Vector2Int> neighbors = new List<Vector2Int>();
     private float lastChanged;
+    private int screenWidth;
+    private int screenHeight;
+
+    private Vector2Int bottomLeft;
+    private Vector2Int topRight;
 
     public GridController()
     {
@@ -18,7 +23,48 @@ public class GridController : MonoBehaviour
         neighbors.Add(new Vector2Int(-1, 0));
         neighbors.Add(new Vector2Int(0, 1));
     }
-    
+
+    private void Update()
+    {
+        var recalcBorder = false;
+        if (Screen.width != screenWidth)
+        {
+            recalcBorder = true;
+            screenWidth = Screen.width;
+        }
+        if (Screen.height != screenHeight)
+        {
+            recalcBorder = true;
+            screenHeight = Screen.height;
+        }
+
+        if (recalcBorder)
+        {
+            bottomLeft = CellFromScreenCoord(0, 0);
+            topRight = CellFromScreenCoord(screenWidth, screenHeight);
+        }
+    }
+
+    private Vector2Int CellFromScreenCoord(int x, int y)
+    {
+        return WorldToCell(mainCamera.ScreenToWorldPoint(new Vector3(x, y, 0)));
+    }
+
+    public bool WithinScreen(Vector2Int cell)
+    {
+        if (cell.x < bottomLeft.x || cell.x > topRight.x)
+        {
+            return false;
+        }
+
+        if (cell.y < bottomLeft.y || cell.y > topRight.y)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public bool HasChangedSince(float t)
     {
         return lastChanged > t;
@@ -137,19 +183,8 @@ public class GridController : MonoBehaviour
         var freeNeighbors = new List<Vector2Int>();
         for (var i = 0; i < neighbors.Count; i++)
         {
-            freeNeighbors.Add(cell + neighbors[i]);
-        }
-
-        return freeNeighbors;
-    }
-
-    public List<Vector2Int> GetFreeNeighborsOf(Vector2Int cell)
-    {
-        var freeNeighbors = new List<Vector2Int>();
-        for (var i = 0; i < neighbors.Count; i++)
-        {
             var pos = cell + neighbors[i];
-            if (!HasObjectAt(pos))
+            if (WithinScreen(pos))
             {
                 freeNeighbors.Add(pos);
             }
