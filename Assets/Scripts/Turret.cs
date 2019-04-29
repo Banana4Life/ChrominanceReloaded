@@ -139,7 +139,7 @@ public class Turret : MonoBehaviour
     void AimAtEnemy()
     {
         isAimed = false;
-        if (!lockOnEnemy)
+        if (lockOnEnemy)
         {
             aimLocation = getIntersection(lockOnEnemy.GetComponent<PathFollower>());
             if (aimLocation != Vector3.zero)
