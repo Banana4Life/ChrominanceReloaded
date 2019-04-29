@@ -19,7 +19,7 @@ public class TurretPlacer : Placer
         tower.transform.position = grid.CellToCellCenter(gridPos);
         var turret = tower.GetComponent<Turret>();
         turret.variant = variant;
-        turret.tankState = turret.getVariant().tankSize;
+        turret.tankState = 0;
         return tower;
     }
 }
