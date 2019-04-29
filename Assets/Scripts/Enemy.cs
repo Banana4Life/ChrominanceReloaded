@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Configure(SpawnConfig config, EnemyTarget target, Wave wave)
+    public void Configure(SpawnConfig config, EnemyTarget target, Wave wave, PrecalculatedPath path)
     {
         // just for reference
         currentConfig = config;
@@ -58,5 +58,6 @@ public class Enemy : MonoBehaviour
         
         pathFollower.speed = currentConfig.walkSpeed;
         pathFollower.target = target;
+        pathFollower.UpdatePath(path.path, path.calculatedAt);
     }
 }

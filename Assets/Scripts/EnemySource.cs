@@ -17,12 +17,14 @@ public class EnemySource : MonoBehaviour
     
     private GameObjectPool pool;
 
-    public GameObject[] spawnPoints;
+    private GameObject[] spawnPoints;
+    private readonly Dictionary<GameObject, PrecalculatedPath> precalculatedPaths = new Dictionary<GameObject, PrecalculatedPath>();
 
     public int difficulty = 1;
     
     void Awake()
     {
+        spawnPoints = GameObject.FindGameObjectsWithTag("spawnpoint");
         pool = GetComponent<GameObjectPool>();
         GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
     }
@@ -52,6 +54,28 @@ public class EnemySource : MonoBehaviour
         }
     }
 
+    private PrecalculatedPath GetPathToTarget(GameObject from)
+    {
+        PrecalculatedPath precalced;
+        if (!precalculatedPaths.TryGetValue(@from, out precalced))
+        {
+            precalced = new PrecalculatedPath
+            {
+                path = target.FindPathFrom(@from.transform.position),
+                calculatedAt = Time.time
+            };
+            precalculatedPaths.Add(from, precalced);
+        }
+
+        if (grid.HasChangedSince(precalced.calculatedAt))
+        {
+            precalculatedPaths.Remove(from);
+            return GetPathToTarget(from);
+        }
+
+        return precalced;
+    }
+
     private void SpawnBatch()
     {
         foreach (var spawnPoint in spawnPoints)
@@ -59,8 +83,9 @@ public class EnemySource : MonoBehaviour
             var variant = currentWave.Pick(spawnPoint);
             if (variant.HasValue)
             {
+                var path = GetPathToTarget(spawnPoint);
                 var obj = pool.Get();
-                obj.GetComponent<Enemy>().Configure(variant.Value, target, currentWave);
+                obj.GetComponent<Enemy>().Configure(variant.Value, target, currentWave, path);
                 obj.transform.position = grid.CellToCellCenter(grid.WorldToCell(spawnPoint.transform.position));
                     
                 currentWave.AddEnemy(obj);
@@ -104,6 +129,12 @@ public class EnemySource : MonoBehaviour
     {
         currentWave = PrepareWave(completeWave.number + 1);
     }
+}
+
+public struct PrecalculatedPath
+{
+    public List<Vector2Int> path;
+    public float calculatedAt;
 }
 
 [Serializable]

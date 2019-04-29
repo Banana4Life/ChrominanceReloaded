@@ -36,44 +36,59 @@ public class PathFollower : MonoBehaviour
         currentPath = null;
     }
 
+    public void UpdatePath(List<Vector2Int> path, float calculatedAt)
+    {
+        if (path != null)
+        {
+            currentPath = path;
+            pathIndex = 0;
+            pathCalculatedAt = calculatedAt;
+            currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
+        }
+    }
+
     void Update()
     {
         if (target)
         {
-            if (currentPath == null)
-            {
-                currentPath = target.FindPathFrom(transform.position);
-                pathCalculatedAt = Time.time;
-                if (currentPath != null)
-                {
-                    pathIndex = 0;
-                    currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
-                }
-            }
+            UpdatePath();
+            UpdatePosition();
+        }
+    }
 
-            if (currentPath != null)
+    private void UpdatePath()
+    {
+        if (currentPath == null)
+        {
+            UpdatePath(target.FindPathFrom(transform.position), Time.time);
+        }
+    }
+
+    private void UpdatePosition()
+    {
+        if (currentPath != null)
+        {
+            PathFinder.DebugRenderPath(target.grid, currentPath);
+            var distance = currentTargetCell - transform.position;
+            transform.position += Time.deltaTime * speed * distance.normalized;
+            
+            if (distance.magnitude < target.grid.cellSize / 8f)
             {
-                PathFinder.DebugRenderPath(target.grid, currentPath);
-                var distance = currentTargetCell - transform.position;
-                transform.position += Time.deltaTime * speed * distance.normalized;
-                if (distance.magnitude < target.grid.cellSize / 8f)
+                if (target.grid.HasChangedSince(pathCalculatedAt))
                 {
-                    if (target.grid.HasChangedSince(pathCalculatedAt))
-                    {
-                        // grid changed, recalculate
-                        currentPath = null;
-                        return;
-                    }
-                    pathIndex++;
-                    if (pathIndex >= currentPath.Count)
-                    {
-                        target.Reached(this);
-                        currentPath = null;
-                    }
-                    else
-                    {
-                        currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
-                    }
+                    // grid changed, recalculate
+                    currentPath = null;
+                    return;
+                }
+                pathIndex++;
+                if (pathIndex >= currentPath.Count)
+                {
+                    target.Reached(this);
+                    currentPath = null;
+                }
+                else
+                {
+                    currentTargetCell = target.grid.CellToCellCenter(currentPath[pathIndex]);
                 }
             }
         }
