@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 05cb1c537fcfc06db92f9d5812a5a930, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34b482648bfb9b7df967fea37733b620, type: 3}
-  m_Color: {r: 0.5660378, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0b16af3fe937a11259e2c6a6e0bd1ae8, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,3 +143,16 @@ MonoBehaviour:
   grid: {fileID: 0}
   target: {fileID: 0}
   initialSpawnFrequency: 5
+  configs:
+  - weight: 0.5
+    kind: 0
+    color: {r: 0, g: 1, b: 0, a: 0}
+    health: 0
+  - weight: 1
+    kind: 1
+    color: {r: 1, g: 0, b: 0, a: 0}
+    health: 0
+  - weight: 2
+    kind: 2
+    color: {r: 0, g: 0, b: 1, a: 0}
+    health: 0
