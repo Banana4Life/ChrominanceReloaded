@@ -72,6 +72,16 @@ public class Turret : MonoBehaviour
 
         AimAtEnemy();
         ShootAtEnemy();
+        
+        
+        if (tankState <= 0)
+        {
+            baseRenderer.color = Color.red;
+        }
+        else
+        {
+            baseRenderer.color = Color.white;
+        }
     }
     
     void UpdateColor()
