@@ -67,44 +67,39 @@ MonoBehaviour:
   target: {fileID: 0}
   spawnFrequency: 0.3
   waveFrequency: 5
-  spawnCd: 0
+  spawnCooldown: 0
   configs:
   - weight: 1
     kind: dreieck
-    color: {r: 0, g: 1, b: 0, a: 0}
+    color: 1
     health: 100
     spinSpeed: 180
     walkSpeed: 2.5
   - weight: 1
     kind: kreis
-    color: {r: 1, g: 0, b: 0, a: 0}
+    color: 0
     health: 100
     spinSpeed: 90
     walkSpeed: 2.5
   - weight: 1
     kind: dreieck
-    color: {r: 0, g: 0, b: 1, a: 0}
+    color: 2
     health: 100
     spinSpeed: 180
     walkSpeed: 2
   - weight: 2
     kind: quadrat
-    color: {r: 0.009542346, g: 1, b: 0, a: 0}
+    color: 1
     health: 100
     spinSpeed: 280
     walkSpeed: 3
   - weight: 2
     kind: quadrat
-    color: {r: 1, g: 0, b: 0, a: 0}
+    color: 0
     health: 100
     spinSpeed: 280
     walkSpeed: 3
-  spawnPoints:
-  - {fileID: 1620689179336441462}
-  - {fileID: 8238032124182864077}
-  - {fileID: 8238032123856302070}
   difficulty: 1
-  wave: 1
 --- !u!1 &1620689179336441462
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +111,7 @@ GameObject:
   - component: {fileID: 1620689179336441417}
   m_Layer: 0
   m_Name: SpawnPoint (1)
-  m_TagString: Untagged
+  m_TagString: spawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +379,7 @@ GameObject:
   - component: {fileID: 8238032123856302025}
   m_Layer: 0
   m_Name: SpawnPoint (3)
-  m_TagString: Untagged
+  m_TagString: spawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,7 +410,7 @@ GameObject:
   - component: {fileID: 8238032124182864114}
   m_Layer: 0
   m_Name: SpawnPoint (2)
-  m_TagString: Untagged
+  m_TagString: spawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
