@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTarget : MonoBehaviour
+public class EnemyTarget : PathTarget
 {
-    public GridController grid;
+    public PlayerBaseController playerBase;
 
-    public Vector2Int GetCell()
+    private void Awake()
     {
-        return grid.WorldToCell(transform.position);
+        playerBase = FindObjectOfType<PlayerBaseController>();
     }
 
-    public List<Vector2Int> FindPathFrom(Vector3 world)
+    public override void Reached(PathFollower follower)
     {
-        return PathFinder.FindPath(grid, grid.WorldToCell(world), GetCell());
+        var enemy = follower.GetComponent<Enemy>();
+        if (enemy)
+        {
+            playerBase.EnemyReached(enemy);
+        }
     }
 }

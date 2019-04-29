@@ -3,9 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public abstract class PathTarget : MonoBehaviour
+{
+    public GridController grid;
+    
+    public Vector2Int GetCell()
+    {
+        return grid.WorldToCell(transform.position);
+    }
+
+    public List<Vector2Int> FindPathFrom(Vector3 world)
+    {
+        return PathFinder.FindPath(grid, grid.WorldToCell(world), GetCell());
+    }
+
+    public abstract void Reached(PathFollower follower);
+}
+
 public class PathFollower : MonoBehaviour
 {
-    public EnemyTarget target;
+    public PathTarget target;
     public float speed = 5;
 
     private List<Vector2Int> currentPath;
@@ -50,6 +67,7 @@ public class PathFollower : MonoBehaviour
                     pathIndex++;
                     if (pathIndex >= currentPath.Count)
                     {
+                        target.Reached(this);
                         currentPath = null;
                     }
                     else

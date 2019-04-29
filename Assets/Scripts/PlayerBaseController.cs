@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerBaseController : MonoBehaviour
 {
     public GridController grid;
+    public PlayerBaseController playerBase;
     
     public int redHealth = 1000;
     public int greenHealth = 1000;
@@ -21,5 +22,6 @@ public class PlayerBaseController : MonoBehaviour
     public void EnemyReached(Enemy enemy)
     {
         Debug.Log("Enemy reached base!");
+        enemy.Die();
     }
 }
