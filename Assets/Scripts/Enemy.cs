@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpinnyThing spinner;
     private PathFollower pathFollower;
+    private Wave currentWave;
 
     private void Awake()
     {
@@ -35,12 +36,14 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+        currentWave.EnemyDied(this);
     }
 
-    public void Configure(SpawnConfig config, EnemyTarget target)
+    public void Configure(SpawnConfig config, EnemyTarget target, Wave wave)
     {
         // just for reference
         currentConfig = config;
+        currentWave = wave;
         
         spriteRenderer.sprite = sprites.GetSprite(currentConfig.kind);
         spriteRenderer.color = currentConfig.color;
