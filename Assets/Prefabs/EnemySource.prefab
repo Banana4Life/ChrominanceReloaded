@@ -144,15 +144,33 @@ MonoBehaviour:
   target: {fileID: 0}
   initialSpawnFrequency: 5
   configs:
-  - weight: 0.5
-    kind: 0
+  - weight: 1
+    kind: dreieck
     color: {r: 0, g: 1, b: 0, a: 0}
     health: 0
+    spinSpeed: 360
+    walkSpeed: 5
   - weight: 1
-    kind: 1
+    kind: kreis
     color: {r: 1, g: 0, b: 0, a: 0}
     health: 0
-  - weight: 2
-    kind: 2
+    spinSpeed: 180
+    walkSpeed: 5
+  - weight: 1
+    kind: dreieck
     color: {r: 0, g: 0, b: 1, a: 0}
     health: 0
+    spinSpeed: 360
+    walkSpeed: 4
+  - weight: 2
+    kind: "quadrat\x13"
+    color: {r: 0.009542346, g: 1, b: 0, a: 0}
+    health: 0
+    spinSpeed: 720
+    walkSpeed: 7
+  - weight: 2
+    kind: "quadrat\x13"
+    color: {r: 1, g: 0, b: 0, a: 0}
+    health: 0
+    spinSpeed: 720
+    walkSpeed: 7

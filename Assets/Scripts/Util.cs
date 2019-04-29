@@ -52,4 +52,9 @@ public class Util
 
         return binaryFindSelectedValue(values, cdf, 0, values.Count, selection * sum);
     }
+
+    public static T chooseWeighted<T>(IReadOnlyList<float> weights, IReadOnlyList<T> values)
+    {
+        return chooseWeighted(weights, values, UnityEngine.Random.value);
+    }
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(GameObjectPool))]
 public class EnemySource : MonoBehaviour
@@ -18,6 +17,7 @@ public class EnemySource : MonoBehaviour
     {
         pool = GetComponent<GameObjectPool>();
         SetFrequency(initialSpawnFrequency);
+        GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
     }
 
     public Vector2Int GetCell()
@@ -34,8 +34,7 @@ public class EnemySource : MonoBehaviour
     public GameObject SpawnEnemy()
     {
         var obj = pool.Get();
-        obj.GetComponent<Enemy>().Configure(PickRandomVariant());
-        obj.GetComponent<PathFollower>().target = target;
+        obj.GetComponent<Enemy>().Configure(PickRandomVariant(), target);
         obj.transform.position = grid.CellToCellCenter(GetCell());
 
         return obj;
@@ -50,7 +49,7 @@ public class EnemySource : MonoBehaviour
             weights[i] = configs[i].weight;
         }
 
-        return Util.chooseWeighted(weights, configs, UnityEngine.Random.value);
+        return Util.chooseWeighted(weights, configs);
     }
 }
 
@@ -58,7 +57,9 @@ public class EnemySource : MonoBehaviour
 public struct SpawnConfig
 {
     public float weight;
-    public uint kind;
+    public string kind;
     public Color color;
     public float health;
+    public float spinSpeed;
+    public float walkSpeed;
 }

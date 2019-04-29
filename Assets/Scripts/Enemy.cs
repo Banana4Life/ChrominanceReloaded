@@ -9,10 +9,14 @@ public class Enemy : MonoBehaviour
     public float health = 100;
     public SpriteAtlas sprites;
     private SpriteRenderer spriteRenderer;
+    private SpinnyThing spinner;
+    private PathFollower pathFollower;
 
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spinner = GetComponentInChildren<SpinnyThing>();
+        pathFollower = GetComponent<PathFollower>();
     }
 
     public void Damage(float amount)
@@ -24,21 +28,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Configure(SpawnConfig config)
+    public void Configure(SpawnConfig config, EnemyTarget target)
     {
-        switch (config.kind)
-        {
-            case 0:
-                spriteRenderer.sprite = sprites.GetSprite("dreieck");
-                break;
-            case 1:
-                spriteRenderer.sprite = sprites.GetSprite("kreis");
-                break;
-            case 2:
-                spriteRenderer.sprite = sprites.GetSprite("quadrat");
-                break;
-        }
+        spriteRenderer.sprite = sprites.GetSprite(config.kind);
         spriteRenderer.color = config.color;
         health = config.health;
+        spinner.speed = config.spinSpeed;
+        pathFollower.speed = config.walkSpeed;
+        pathFollower.target = target;
     }
 }
