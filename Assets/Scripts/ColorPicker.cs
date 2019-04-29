@@ -38,23 +38,25 @@ public class ColorPicker : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            var cellPos = grid.MouseToCell();
-
-            var obj = grid.GetObjectAt(cellPos);
-            if (obj)
-            {
-                var turret = obj.GetComponent<Turret>();
-                if (turret)
-                {
-                    turret.FillTank(floater.GetComponent<Floater>().color);
-                }
-            }
-            Destroy(floater);
-        }
+       
         if (floater)
         {
+            if (Input.GetMouseButtonUp(0))
+            {
+                var cellPos = grid.MouseToCell();
+
+                var obj = grid.GetObjectAt(cellPos);
+                if (obj)
+                {
+                    var turret = obj.GetComponent<Turret>();
+                    if (turret)
+                    {
+                        turret.FillTank(floater.GetComponent<Floater>().color);
+                    }
+                }
+                Destroy(floater);
+            }
+            
             var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             floater.transform.position = mousePos;
