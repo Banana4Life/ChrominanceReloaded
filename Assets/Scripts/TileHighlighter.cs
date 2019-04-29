@@ -9,38 +9,36 @@ public class TileHighlighter : MonoBehaviour
     public Color buildInCell;
     public Color removeInCell;
     
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer r;
     private Vector2Int currentCell;
+    private float cellSwitchedAt;
+    private bool canBuild;
     
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        r = GetComponentInChildren<SpriteRenderer>();
+        r.size = Vector2.one * grid.cellSize;
+        
         currentCell = grid.MouseToCell();
-        spriteRenderer.size = Vector2.one * grid.cellSize;
         UpdateHighlight();
     }
 
     void Update()
     {
+        r.size = Vector2.one * grid.cellSize;
         var newCell = grid.MouseToCell();
-        if (currentCell != newCell)
+        if (currentCell != newCell || grid.HasChangedSince(cellSwitchedAt))
         {
             currentCell = newCell;
+            cellSwitchedAt = Time.time;
             UpdateHighlight();
+            r.color = canBuild ? buildInCell :removeInCell;
         }
     }
 
     private void UpdateHighlight()
     {
-        if (grid.HasObjectAt(currentCell))
-        {
-            spriteRenderer.color = removeInCell;
-        }
-        else
-        {
-            spriteRenderer.color = buildInCell;
-        }
-        spriteRenderer.size = Vector2.one * grid.cellSize;
+        canBuild = grid.HasObjectAt(currentCell);
         transform.position = grid.CellToCellCorner(currentCell);
     }
 }
