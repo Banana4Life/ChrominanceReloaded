@@ -110,30 +110,28 @@ public class Turret : MonoBehaviour
         var enumerator = enemySource.GetCurrentWave().GetLivingEnemies().GetEnumerator();
         try
         {
-            if (enumerator.MoveNext())
+            GameObject closest = null;
+            var shortestDistanceSqr = float.MaxValue;
+            while (enumerator.MoveNext())
             {
-                var closest = enumerator.Current;
-                var shortestDistanceSqr = (transform.position - closest.transform.position).sqrMagnitude;
-                while (enumerator.MoveNext())
+                var next = enumerator.Current;
+                if (Enemy.colorForType(next.GetComponent<Enemy>().color) == colorVariant)
                 {
-                    var next = enumerator.Current;
                     var nextDistanceSqr = (transform.position - next.transform.position).sqrMagnitude;
                     if (nextDistanceSqr < shortestDistanceSqr)
                     {
                         closest = next;
                         shortestDistanceSqr = nextDistanceSqr;
-                    }
+                    }    
                 }
-
-                return closest;
             }
+
+            return closest;
         }
         finally
         {
             enumerator.Dispose();
         }
-
-        return null;
     }
 
     void AimAtEnemy()
@@ -186,29 +184,31 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(aimLocation, 0.25f);
         
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, headAngle) * Vector3.up * 20);
-        
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, headAngle) * Vector3.up * 20);
+//        
         if (lockOnEnemy != null)
         {
-            var enemy = lockOnEnemy.GetComponent<PathFollower>();
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, 0.5f);
+//            var enemy = lockOnEnemy.GetComponent<PathFollower>();
+//            Gizmos.color = Color.magenta;
+//            Gizmos.DrawLine(lockOnEnemy.transform.position, lockOnEnemy.transform.position + lockOnEnemy.transform.rotation * Vector3.up * enemy.speed);
             
             // Intersection Spheres
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, enemyIntersectTime * turretVariant.speed);
-            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemyIntersectTime * enemy.speed);
+//            Gizmos.color = Color.cyan;
+//            Gizmos.DrawWireSphere(transform.position, enemyIntersectTime * turretVariant.speed);
+//            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemyIntersectTime * enemy.speed);
             
             // Enemy Velocity Spheres
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed);
-            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 2);
-            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 3);
+//            Gizmos.color = Color.blue;
+//            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed);
+//            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 2);
+//            Gizmos.DrawWireSphere(lockOnEnemy.transform.position, enemy.speed * 3);
             
             // Last Enemy Source Node
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(tNode, 0.1f);
+//            Gizmos.color = Color.red;
+//            Gizmos.DrawWireSphere(tNode, 0.1f);
         }
     }
 

@@ -73,6 +73,21 @@ public class Enemy : MonoBehaviour
         pathFollower.target = target;
         pathFollower.UpdatePath(path.path, path.calculatedAt);
     }
+
+    public static int colorForType(ColorType type)
+    {
+        switch (type)
+        {
+            case ColorType.Green:
+                return 0;
+            case ColorType.Red:
+                return 1;
+            case ColorType.Blue:
+                return 2;
+        }
+
+        return -1;
+    }
 }
 
 public enum ColorType

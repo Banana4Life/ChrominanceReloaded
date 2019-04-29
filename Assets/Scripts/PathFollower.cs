@@ -118,12 +118,12 @@ public class PathFollower : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(currentTargetCell, 0.25f);
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(GetPosAt(0), 0.25f);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(GetPosAt(1), 0.15f);
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireSphere(currentTargetCell, 0.25f);
+//        
+//        Gizmos.color = Color.green;
+//        Gizmos.DrawWireSphere(GetPosAt(0), 0.25f);
+//        Gizmos.color = Color.cyan;
+//        Gizmos.DrawWireSphere(GetPosAt(1), 0.15f);
     }
 }
