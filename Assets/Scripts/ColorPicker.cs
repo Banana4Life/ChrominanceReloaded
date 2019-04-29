@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ColorPicker : MonoBehaviour
 {
     protected GridController grid;
-    public Camera camera;
+    public Camera cam;
     private Vector2Int cellClicked;
 
     public GameObject floater;
@@ -55,7 +55,7 @@ public class ColorPicker : MonoBehaviour
         }
         if (floater)
         {
-            var mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+            var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             floater.transform.position = mousePos;
         }
