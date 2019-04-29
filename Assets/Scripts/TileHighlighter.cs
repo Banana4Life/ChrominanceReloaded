@@ -38,6 +38,15 @@ public class TileHighlighter : MonoBehaviour
     private void UpdateHighlight()
     {
         transform.position = grid.CellToCellCorner(currentCell);
-        r.color = grid.HasObjectAt(currentCell) ? removeInCell : buildInCell;
+        if (FindObjectOfType<ColorPicker>().isActive())
+        {
+            r.enabled = false;
+        }
+        else
+        {
+            r.enabled = true;
+            r.color = grid.HasObjectAt(currentCell) ? removeInCell : buildInCell;
+        }
+        
     }
 }

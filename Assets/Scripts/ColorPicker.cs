@@ -62,4 +62,9 @@ public class ColorPicker : MonoBehaviour
             floater.transform.position = mousePos;
         }
     }
+    
+    public bool isActive()
+    {
+        return floater;
+    }
 }
