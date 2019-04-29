@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextSceneScript : MonoBehaviour
+namespace Intro
 {
-    private GameObject loadingText;
-
-    private void Awake()
+    public class NextSceneScript : MonoBehaviour
     {
-        loadingText = GameObject.Find("Loading");
-        loadingText.SetActive(false);
-    }
+        private GameObject loadingText;
+        private GameObject clickThis;
 
-    void Update()
-    {
-        if (Input.GetMouseButton(0))
+        private void Awake()
         {
-            loadingText.SetActive(true);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            loadingText = GameObject.Find("Loading");
+            clickThis = GameObject.Find("ClickThis");
+            loadingText.SetActive(false);
+        }
+
+        void Update()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                clickThis.SetActive(false);
+                loadingText.SetActive(true);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 }
