@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(GameObjectPool))]
@@ -76,17 +75,17 @@ public class EnemySource : MonoBehaviour
         var enemies = new HashSet<GameObject>();
         foreach (var spawnPoint in spawnPoints)
         {
-            var list = new Queue<SpawnConfig>();
+            var enemyCount = UnityEngine.Random.Range(waveNumber + difficulty, 5 * waveNumber * difficulty);
+            var list = new Queue<SpawnConfig>(enemyCount);
             waveConfigs.Add(spawnPoint, list);
-            var randomCnt = UnityEngine.Random.Range(waveNumber + difficulty, 5 * waveNumber * difficulty);
-            for (var i = 0; i < randomCnt; i++)
+            for (var i = 0; i < enemyCount; i++)
             {
                 list.Enqueue(PickRandomVariant());
             }
         }
 
         spawnCooldown = waveFrequency;
-        return new Wave(waveNumber, this, enemies, waveConfigs);
+        return new Wave(waveNumber,  this, enemies, waveConfigs);
     }
 
     private SpawnConfig PickRandomVariant()
@@ -124,8 +123,6 @@ public class Wave
     private readonly EnemySource source;
     private readonly HashSet<GameObject> enemies;
     private readonly Dictionary<GameObject, Queue<SpawnConfig>> configs;
-    private readonly int size;
-    private int killed;
 
     public Wave(int number, EnemySource source, HashSet<GameObject> enemies, Dictionary<GameObject, Queue<SpawnConfig>> configs)
     {
@@ -133,7 +130,6 @@ public class Wave
         this.source = source;
         this.enemies = enemies;
         this.configs = configs;
-        size = configs.Select(e => e.Value.Count).Sum();
     }
 
     public ISet<GameObject> GetLivingEnemies()
@@ -141,14 +137,9 @@ public class Wave
         return enemies;
     }
 
-    public int EnemiesLeft()
-    {
-        return size - killed;
-    }
-
     public bool IsDead()
     {
-        return killed >= size;
+        return enemies.Count == 0 && configs.Count == 0;
     }
 
     public SpawnConfig? Pick(GameObject spawnPoint)
@@ -176,7 +167,6 @@ public class Wave
     public void EnemyDied(Enemy enemy)
     {
         enemies.Remove(enemy.gameObject);
-        killed++;
         if (IsDead())
         {
             source.WaveComplete(this);

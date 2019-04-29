@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
         pathFollower = GetComponent<PathFollower>();
     }
 
+    private void OnDisable()
+    {
+        currentWave?.EnemyDied(this);
+    }
+
     public void Damage(float amount)
     {
         health -= amount;
@@ -36,7 +41,6 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        currentWave.EnemyDied(this);
     }
 
     public void Configure(SpawnConfig config, EnemyTarget target, Wave wave)

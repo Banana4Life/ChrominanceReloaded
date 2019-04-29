@@ -39,7 +39,10 @@ public class GameObjectPool : MonoBehaviour
         }
 
         GrowPool(growBy);
-        return objects[i];
+        var firstOfNewBatch = objects[i];
+        firstOfNewBatch.SetActive(true);
+        
+        return firstOfNewBatch;
     }
 
     private void GrowPool(int by)
