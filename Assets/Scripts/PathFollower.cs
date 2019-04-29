@@ -67,22 +67,22 @@ public class PathFollower : MonoBehaviour
             {
                 return target.grid.CellToCellCenter(currentPath[requestedNode]);
             }
-            return target.grid.CellToCellCenter(currentPath[currentPath.Count - 1]);
+            if (currentPath.Count > 0)
+            {
+                return target.grid.CellToCellCenter(currentPath[currentPath.Count - 1]);
+            }
         }
         return transform.position;
     }
 
     private void OnDrawGizmos()
     {
-        if (currentTargetCell != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(currentTargetCell, 0.25f);
-            
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(GetPosAt(0), 0.25f);
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(GetPosAt(1), 0.15f);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(currentTargetCell, 0.25f);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(GetPosAt(0), 0.25f);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(GetPosAt(1), 0.15f);
     }
 }
