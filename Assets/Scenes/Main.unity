@@ -288,27 +288,27 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1406576047}
+    m_TransformParent: {fileID: 1226824281}
     m_Modifications:
     - target: {fileID: 7945640842042825619, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_Name
-      value: SplatterEmitter (2)
+      value: BlueFloater
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2582759
+      value: -0.30300778
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9058177
+      value: -4.2839975
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0942252
+      value: -2.0942252
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
@@ -350,6 +350,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076812647781575861, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: color
+      value: 
+      objectReference: {fileID: 1984972249240341426, guid: 3375ad8b7b4858273bfc03aa79d9e3e5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0d506587746e8e519c337a115c21031, type: 3}
 --- !u!4 &183651970 stripped
@@ -746,27 +767,27 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1406576047}
+    m_TransformParent: {fileID: 1226824281}
     m_Modifications:
     - target: {fileID: 7945640842042825619, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_Name
-      value: SplatterEmitter (1)
+      value: RedFloater
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7517176
+      value: 0.6969922
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.123360395
+      value: -4.2839975
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0942252
+      value: -2.0942252
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
@@ -873,6 +894,27 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxGradient.ctime2
       value: 21010
       objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076812647781575861, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: color
+      value: 
+      objectReference: {fileID: 6706854013547704740, guid: 16af88f62daedf985bb6006b19a6b352,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0d506587746e8e519c337a115c21031, type: 3}
 --- !u!4 &479670609 stripped
@@ -1656,6 +1698,7 @@ GameObject:
   - component: {fileID: 1226824280}
   - component: {fileID: 1226824282}
   - component: {fileID: 1226824283}
+  - component: {fileID: 1226824284}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1687,7 +1730,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7945640842042825630}
+  - {fileID: 479670609}
+  - {fileID: 183651970}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1722,6 +1768,20 @@ MonoBehaviour:
   container: {fileID: 530179352}
   wallPrefab: {fileID: 4947702885791677311, guid: 36b6fc33c0cb57fdd9ae652443befd65,
     type: 3}
+--- !u!114 &1226824284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226824279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4908e94de3b972686a0291f5775cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
+  floater: {fileID: 0}
 --- !u!1 &1235845667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406576047}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ColorStuffs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2135,10 +2195,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6969922, y: 0.21600251, z: -2.0942252}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 183651970}
-  - {fileID: 479670609}
-  - {fileID: 7945640842042825630}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2715,27 +2772,27 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1406576047}
+    m_TransformParent: {fileID: 1226824281}
     m_Modifications:
     - target: {fileID: 7945640842042825619, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_Name
-      value: SplatterEmitter
+      value: GreenFloater
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6969922
+      value: 1.6969922
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21600251
+      value: -4.2839975
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0942252
+      value: -2.0942252
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
@@ -2760,7 +2817,7 @@ PrefabInstance:
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7945640842042825630, guid: b0d506587746e8e519c337a115c21031,
         type: 3}
@@ -2842,6 +2899,27 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxGradient.ctime2
       value: 35466
       objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945640842042825617, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076812647781575861, guid: b0d506587746e8e519c337a115c21031,
+        type: 3}
+      propertyPath: color
+      value: 
+      objectReference: {fileID: 396089113638997954, guid: fcb26e91f632225d9890d25800addb51,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0d506587746e8e519c337a115c21031, type: 3}
 --- !u!1001 &1620689179225309288

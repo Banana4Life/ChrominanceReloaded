@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7945640842042825630}
   - component: {fileID: 7945640842042825628}
   - component: {fileID: 7945640842042825617}
+  - component: {fileID: 2076812647781575861}
   m_Layer: 0
   m_Name: SplatterEmitter
   m_TagString: Untagged
@@ -110,7 +111,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4536,3 +4537,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &2076812647781575861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945640842042825619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2f228396f684d27aaef4e90d25ef40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {fileID: 0}
+  ps: {fileID: 7945640842042825617}

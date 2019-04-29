@@ -313,4 +313,17 @@ public class Turret : MonoBehaviour
         var t2 = (-Mathf.Sqrt(b * b - 4 * a * c) -b) / (2 * a);
         return Mathf.Max(t1, t2);
     }
+
+    public void FillTank(ColorVariant color)
+    {
+        for (var i = 0; i < colorVariants.Length; i++)
+        {
+            if (colorVariants[i] == color)
+            {
+                colorVariant = i; // TODO ugh this is ugly
+                break;
+            }
+        }
+        tankState = turretVariant.tankSize;
+    }
 }
