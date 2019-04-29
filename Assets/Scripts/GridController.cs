@@ -173,9 +173,9 @@ public class GridController : MonoBehaviour
         return existing;
     }
 
-    public bool DeleteObjectAt(Vector2Int cell)
+    public GameObject DeleteObjectAt(Vector2Int cell)
     {
-        return SetObjectAt(cell, null) != null;
+        return SetObjectAt(cell, null);
     }
 
     public List<Vector2Int> GetNeighborsOf(Vector2Int cell)

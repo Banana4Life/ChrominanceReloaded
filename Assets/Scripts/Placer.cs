@@ -38,9 +38,22 @@ public abstract class Placer : MonoBehaviour
                 var cellPos = GetCellPos();
                 if (cellPos == cellClicked)
                 {
+                    var prev = grid.DeleteObjectAt(cellPos);
+                    bool wasWall = prev && prev.name.StartsWith("Wall");
+                    
+                    Destroy(prev);
+                    
                     var obj = Spawn(cellPos);
-                    grid.SetObjectAt(cellPos, obj);
-                    obj.transform.parent = container.transform;
+
+                    if (wasWall && obj.name.StartsWith("Wall"))
+                    {
+                        Destroy(obj);
+                    }
+                    else
+                    {
+                        grid.SetObjectAt(cellPos, obj);
+                        obj.transform.parent = container.transform;
+                    }
                 }
 
                 placeUponRelease = false;
@@ -51,10 +64,11 @@ public abstract class Placer : MonoBehaviour
             if (Input.GetMouseButtonDown(mouseButton) && !EventSystem.current.IsPointerOverGameObject())
             {
                 var cellPos = GetCellPos();
-                if (!grid.HasObjectAt(cellPos))
+                var obj = grid.GetObjectAt(cellPos);
+                if (!obj || !obj.GetComponent<Floater>())
                 {
-                    cellClicked = GetCellPos();
-                    placeUponRelease = true;
+                    cellClicked = cellPos;
+                    placeUponRelease = true;   
                 }
             }
         }
