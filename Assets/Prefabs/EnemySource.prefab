@@ -163,13 +163,13 @@ MonoBehaviour:
     spinSpeed: 360
     walkSpeed: 4
   - weight: 2
-    kind: "quadrat\x13"
+    kind: quadrat
     color: {r: 0.009542346, g: 1, b: 0, a: 0}
     health: 0
     spinSpeed: 720
     walkSpeed: 7
   - weight: 2
-    kind: "quadrat\x13"
+    kind: quadrat
     color: {r: 1, g: 0, b: 0, a: 0}
     health: 0
     spinSpeed: 720

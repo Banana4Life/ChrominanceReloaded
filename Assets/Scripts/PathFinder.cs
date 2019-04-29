@@ -8,10 +8,21 @@ using Priority_Queue;
 public class PathFinder
 {
     public const uint MaxIterations = 1000;
+    public const int TowerCost = 10000;
+    public const int EmptyCost = 1;
 
     private static float EstimateCost(Vector2Int from, Vector2Int to)
     {
         return (to - from).sqrMagnitude;
+    }
+
+    public static int GetCost(GridController g, Vector2Int from, Vector2Int to)
+    {
+        if (g.HasObjectAt(to) || g.HasObjectAt(from))
+        {
+            return TowerCost;
+        }
+        return EmptyCost;
     }
     
     public static KeyValuePair<List<Vector2Int>, int> ShortestPath(GridController g, Vector2Int source, Vector2Int target)
@@ -41,10 +52,10 @@ public class PathFinder
             var path = paths[current];
             var distance = distances[current];
     
-            var next = g.GetFreeNeighborsOf(current).Where(n => !known.Contains(n));
+            var next = g.GetNeighborsOf(current).Where(n => !known.Contains(n));
             foreach (var node in next)
             {
-                var newDistance = distance + 1;
+                var newDistance = distance + GetCost(g, current, node);
                 var newPath = path.ToList();
                 newPath.Add(node);
                 if (!distances.ContainsKey(node) || newDistance < distances[node])

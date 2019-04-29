@@ -125,6 +125,17 @@ public class GridController : MonoBehaviour
         return SetObjectAt(cell, null) != null;
     }
 
+    public List<Vector2Int> GetNeighborsOf(Vector2Int cell)
+    {
+        var freeNeighbors = new List<Vector2Int>();
+        for (var i = 0; i < neighbors.Count; i++)
+        {
+            freeNeighbors.Add(cell + neighbors[i]);
+        }
+
+        return freeNeighbors;
+    }
+
     public List<Vector2Int> GetFreeNeighborsOf(Vector2Int cell)
     {
         var freeNeighbors = new List<Vector2Int>();

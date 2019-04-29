@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
 {
     public float health = 100;
     public SpriteAtlas sprites;
+    
+    // for viewing only
+    public SpawnConfig currentConfig;
+    
     private SpriteRenderer spriteRenderer;
     private SpinnyThing spinner;
     private PathFollower pathFollower;
@@ -30,11 +34,16 @@ public class Enemy : MonoBehaviour
 
     public void Configure(SpawnConfig config, EnemyTarget target)
     {
-        spriteRenderer.sprite = sprites.GetSprite(config.kind);
-        spriteRenderer.color = config.color;
-        health = config.health;
-        spinner.speed = config.spinSpeed;
-        pathFollower.speed = config.walkSpeed;
+        currentConfig = config;
+        
+        spriteRenderer.sprite = sprites.GetSprite(currentConfig.kind);
+        spriteRenderer.color = currentConfig.color;
+        
+        health = currentConfig.health;
+        
+        spinner.speed = currentConfig.spinSpeed;
+        
+        pathFollower.speed = currentConfig.walkSpeed;
         pathFollower.target = target;
     }
 }

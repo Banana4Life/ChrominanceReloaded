@@ -50,3 +50,6 @@ TagManager:
   - name: Projectiles
     uniqueID: 3016232061
     locked: 0
+  - name: Highlight
+    uniqueID: 400022541
+    locked: 0
