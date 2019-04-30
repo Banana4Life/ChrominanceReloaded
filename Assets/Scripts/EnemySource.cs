@@ -26,7 +26,15 @@ public class EnemySource : MonoBehaviour
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnpoint");
         pool = GetComponent<GameObjectPool>();
-        GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
+
+        var topTightCell = grid.GetTopRightCornerCell();
+        for (var i = 0; i < spawnPoints.Length; i++)
+        {
+            var spawnerCell = grid.WorldToCell(spawnPoints[i].transform.position);
+            spawnerCell.x = topTightCell.x;
+            grid.CellToCellCenter(spawnerCell);
+            spawnPoints[i].SetActive(false);
+        }
     }
 
     private void Start()

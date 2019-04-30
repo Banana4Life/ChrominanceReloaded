@@ -45,6 +45,16 @@ public class GridController : MonoBehaviour
         }
     }
 
+    public Vector2Int GetTopRightCornerCell()
+    {
+        return topRight;
+    }
+
+    public Vector2Int GetBottomLeftCornerCell()
+    {
+        return topRight;
+    }
+
     private Vector2Int CellFromScreenCoord(int x, int y)
     {
         return WorldToCell(mainCamera.ScreenToWorldPoint(new Vector3(x, y, 0)));
