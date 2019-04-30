@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource hitSound;
-    public AudioSource killSound;
+    private AudioSource killSound;
     
     // for viewing only
     public SpawnConfig currentConfig;
@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spinner = GetComponentInChildren<SpinnyThing>();
         pathFollower = GetComponent<PathFollower>();
+        killSound = GameObject.Find("KillSound").GetComponent<AudioSource>();
     }
 
     private void OnDisable()
