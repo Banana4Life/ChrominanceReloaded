@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: This is my home and I need color to live...
       objectReference: {fileID: 0}
+    - target: {fileID: 7987797152015294581, guid: 359d36d7963d98ce2bca7801ec649e42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 359d36d7963d98ce2bca7801ec649e42, type: 3}
 --- !u!224 &487903159 stripped
@@ -541,10 +546,10 @@ RectTransform:
   m_Father: {fileID: 487903159}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -235, y: -168}
-  m_SizeDelta: {x: 201.4, y: 201.4}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 584, y: 206}
+  m_SizeDelta: {x: 201.40002, y: 201.4}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &912136720
 MonoBehaviour:
