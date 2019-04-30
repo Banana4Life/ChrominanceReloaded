@@ -7,6 +7,7 @@ using UnityEngine.U2D;
 public class Enemy : MonoBehaviour
 {
     public float health = 100;
+    public float predictedDamage = 100;
     public SpriteAtlas sprites;
     public ColorType color;
     

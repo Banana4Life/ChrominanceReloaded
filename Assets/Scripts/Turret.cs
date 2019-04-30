@@ -19,6 +19,7 @@ public class Turret : MonoBehaviour
     
     [Header("Aim")]
     public GameObject lockOnEnemy;
+    public float predictedDamage;
     public float finalIterationCount;
     public Vector3 tNode;
     private float enemyIntersectTime;
@@ -109,6 +110,14 @@ public class Turret : MonoBehaviour
             offsetLR *= -1;
             
             launcher.Shoot(turretVariant, offset, turretColorVariant.gradient);
+
+            predictedDamage += turretVariant.damage;
+
+            if (predictedDamage > lockOnEnemy.GetComponent<Enemy>().health)
+            {
+                lockOnEnemy = null;
+            }
+            
             tankState--;
         }
 
@@ -136,6 +145,7 @@ public class Turret : MonoBehaviour
                 }
             }
 
+            predictedDamage = 0;
             return closest;
         }
         finally
