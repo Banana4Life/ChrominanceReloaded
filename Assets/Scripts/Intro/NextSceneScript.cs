@@ -8,6 +8,8 @@ namespace Intro
         private GameObject loadingText;
         private GameObject clickThis;
 
+        private bool mouseWasDown = false;
+
         private void Awake()
         {
             loadingText = GameObject.Find("Loading");
@@ -17,7 +19,11 @@ namespace Intro
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (!mouseWasDown && Input.GetMouseButtonDown(0))
+            {
+                mouseWasDown = true;
+            }
+            if (mouseWasDown && Input.GetMouseButtonUp(0))
             {
                 clickThis.SetActive(false);
                 loadingText.SetActive(true);
