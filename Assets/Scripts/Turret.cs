@@ -42,6 +42,9 @@ public class Turret : MonoBehaviour
     public TurretVariant[] variants;
     public ColorVariant[] colorVariants;
 
+    [Header("Audio")]
+    public AudioSource shotSound;
+
     private EnemySource enemySource;
 
     private void Awake()

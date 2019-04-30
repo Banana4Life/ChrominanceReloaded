@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour
     public float predictedDamage = 100;
     public SpriteAtlas sprites;
     public ColorType color;
+
+    [Header("Audio")]
+    public AudioSource hitSound;
+    public AudioSource killSound;
     
     // for viewing only
     public SpawnConfig currentConfig;
@@ -36,7 +40,12 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            killSound.Play();
             Die();
+        }
+        else
+        {
+            hitSound.Play();
         }
     }
 
