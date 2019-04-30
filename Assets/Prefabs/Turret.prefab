@@ -4014,9 +4014,9 @@ ParticleSystem:
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
@@ -5040,6 +5040,7 @@ MonoBehaviour:
   tankState: 0
   disabled: 0
   lockOnEnemy: {fileID: 0}
+  predictedDamage: 0
   finalIterationCount: 0
   tNode: {x: 0, y: 0, z: 0}
   head: {fileID: 786703651229517505}

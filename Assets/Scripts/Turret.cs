@@ -112,7 +112,7 @@ public class Turret : MonoBehaviour
             var offset = Vector3.left * turretVariant.offset * offsetLR;
             offsetLR *= -1;
             
-            launcher.Shoot(turretVariant, offset, turretColorVariant.gradient);
+            launcher.Shoot(turretVariant, offset, turretColorVariant, colorVariant);
 
             predictedDamage += turretVariant.damage;
 

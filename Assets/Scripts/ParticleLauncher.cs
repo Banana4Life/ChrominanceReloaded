@@ -11,6 +11,8 @@ public class ParticleLauncher : MonoBehaviour {
     private TurretVariant variant;
 
     public static GameObject decalEmitter;
+    private ColorVariant colorVariant;
+    private int colorVariantInt;
 
     void Start ()
     {
@@ -25,14 +27,14 @@ public class ParticleLauncher : MonoBehaviour {
     {
         ParticlePhysicsExtensions.GetCollisionEvents (particleLauncher, other, collisionEvents);
 
+        var enemy = other.GetComponent<Enemy>();
+        enemy.Damage(variant.damage);
+            
         foreach (var cEvent in collisionEvents)
         {
             decalEmitter.GetComponent<ParticleDecalPool>().ParticleHit (particleColorGradient, other.transform.position);
             EmitAtLocation (cEvent);
-        }
-
-        var enemy = other.GetComponent<Enemy>();
-        enemy.Damage(variant.damage);
+        }   
     }
 
     void EmitAtLocation(ParticleCollisionEvent particleCollisionEvent)
@@ -46,12 +48,28 @@ public class ParticleLauncher : MonoBehaviour {
         */
     }
 
-    public void Shoot(TurretVariant variant, Vector3 offset, Gradient gradient)
+    public void Shoot(TurretVariant variant, Vector3 offset, ColorVariant colorVariant, int colorVariantInt)
     {
         particleLauncher.transform.localPosition = variant.launcherOffset + offset;
+
+        var collisionQuality = particleLauncher.collision;
+        switch (colorVariantInt)
+        {
+            case 0:
+                collisionQuality.collidesWith = LayerMask.GetMask("EnemyGreen");
+                break;                
+            case 1:
+                collisionQuality.collidesWith = LayerMask.GetMask("EnemyRed");
+                break;
+            case 2:
+                collisionQuality.collidesWith = LayerMask.GetMask("EnemyBlue");
+                break;
+        }
         
         this.variant = variant;
-        particleColorGradient = gradient;
+        this.colorVariantInt = colorVariantInt;
+        particleColorGradient = colorVariant.gradient;
+        this.colorVariant = colorVariant;
         ParticleSystem.MainModule psMain = particleLauncher.main;
         psMain.startColor =  particleColorGradient.Evaluate (Random.Range (0f, 1f));;
         psMain.startSpeed =  variant.speed;

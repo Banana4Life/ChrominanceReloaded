@@ -16,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
+  - EnemyRed
   - Canvas
-  - 
-  - 
+  - EnemyGreen
+  - EnemyBlue
   - 
   - 
   - 
