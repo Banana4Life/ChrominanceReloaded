@@ -41,22 +41,23 @@ public class PlayerBaseController : MonoBehaviour
     public void AwardKill(ColorType color)
     {
         float baseAmount = 1f;
+        float colorBonus = 10f;
         switch (color)
         {
             case ColorType.Red:
-                redAmount += baseAmount * 20;
+                redAmount += baseAmount * colorBonus;
                 greenAmount += baseAmount;
                 blueAmount += baseAmount;
                 break;
             case ColorType.Green:
                 redAmount += baseAmount;
-                greenAmount += baseAmount * 20;
+                greenAmount += baseAmount * colorBonus;
                 blueAmount += baseAmount;
                 break;
             case ColorType.Blue:
                 redAmount += baseAmount;
                 greenAmount += baseAmount;
-                blueAmount += baseAmount * 20;
+                blueAmount += baseAmount * colorBonus;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(color), color, null);
