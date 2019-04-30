@@ -7,6 +7,9 @@ public class ParticleLauncher : MonoBehaviour {
     public GameObject decalEmitterPrefab;
     public Gradient particleColorGradient;
 
+    [Header("Audio")]
+    public AudioSource shotSound;
+    
     List<ParticleCollisionEvent> collisionEvents;
     private TurretVariant variant;
 
@@ -74,6 +77,7 @@ public class ParticleLauncher : MonoBehaviour {
         psMain.startColor =  particleColorGradient.Evaluate (Random.Range (0f, 1f));;
         psMain.startSpeed =  variant.speed;
         particleLauncher.Emit(1);
+        shotSound.Play();
     }
         
 }
