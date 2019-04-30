@@ -13,6 +13,7 @@ public class PlayerBaseController : MonoBehaviour
     public float blueAmount = 1000;
 
     public Vector2Int gridLocation = Vector2Int.zero;
+    public float maxAmount = 1000;
 
     private void Update()
     {
@@ -61,9 +62,9 @@ public class PlayerBaseController : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(color), color, null);
         }
 
-        redAmount = Mathf.Max(redAmount, 1000);
-        greenAmount = Mathf.Max(greenAmount, 1000);
-        blueAmount = Mathf.Max(blueAmount, 1000);
+        redAmount = Mathf.Min(redAmount, maxAmount);
+        greenAmount = Mathf.Min(greenAmount, maxAmount);
+        blueAmount = Mathf.Min(blueAmount, maxAmount);
     }
 
     public bool Take(ColorVariant color)

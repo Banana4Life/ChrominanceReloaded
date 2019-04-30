@@ -69,6 +69,10 @@ public class TileHighlighter : MonoBehaviour
                 {
                     r.color = removeInCell;
                 }
+                else
+                {
+                    r.color = Color.black;
+                }
             }
             else
             {

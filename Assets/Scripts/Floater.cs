@@ -10,6 +10,16 @@ public class Floater : MonoBehaviour
     public float hovered;
 
 
+    private float maxRadius = 1;
+    private float minRadius = 0.1f;
+    
+    private float maxEmission = 1000;
+    private float minEmission = 100;
+
+    private float radiusHover;
+    private float emissionHover;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,21 +30,52 @@ public class Floater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hovered -= Time.deltaTime;
-        if (hovered > 0)
+        if (name == "Floater(Clone)")
         {
-            var psShape = ps.shape;
-            psShape.radius = Mathf.Min(psShape.radius + Time.deltaTime * 4, 1);
-            var psEmission = ps.emission;
-            psEmission.rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Min(psEmission.rateOverTime.constant + Time.deltaTime * 2000, 1000));
-            
+            return;
         }
-        else
+        var baseController = FindObjectOfType<PlayerBaseController>();
+
+        var amountOfColor = 0f;
+        
+        switch (color.colorId)
         {
-            var psShape = ps.shape;
-            psShape.radius = Mathf.Max(psShape.radius - Time.deltaTime *3, 0.1f);
-            var psEmission = ps.emission;
-            psEmission.rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Max(psEmission.rateOverTime.constant - Time.deltaTime * 1000, 100));
+            case 0:
+                amountOfColor = baseController.greenAmount;
+                break;
+            case 1:
+                amountOfColor = baseController.redAmount;
+                break;
+            case 2:
+                amountOfColor = baseController.blueAmount;
+                break;
         }
+        
+        var percentSize = amountOfColor / baseController.maxAmount;
+
+        var newRadius = (maxRadius - minRadius) * percentSize + minRadius;
+        var newEmission = (maxEmission - minEmission) * percentSize + minEmission;
+        
+        
+        var psShape = ps.shape;
+        var psEmission = ps.emission;
+
+        psShape.radius = newRadius;
+        psEmission.rateOverTime = newEmission;
+        
+//
+//        hovered -= Time.deltaTime;
+//        if (hovered > 0)
+//        {
+//            
+//            psShape.radius = Mathf.Min(psShape.radius + Time.deltaTime * 4, maxRadius);
+//            psEmission.rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Min(psEmission.rateOverTime.constant + Time.deltaTime * 2000, 1000));
+//            
+//        }
+//        else
+//        {
+//            psShape.radius = Mathf.Max(psShape.radius - Time.deltaTime *3, minRadius);
+//            psEmission.rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Max(psEmission.rateOverTime.constant - Time.deltaTime * 1000, 100));
+//        }
     }
 }
