@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBaseController : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class PlayerBaseController : MonoBehaviour
     private void Update()
     {
         transform.position = grid.CellToCellCenter(gridLocation);
+
+
+        if (redAmount < 0 || greenAmount < 0 || blueAmount < 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     public void EnemyReached(Enemy enemy)
