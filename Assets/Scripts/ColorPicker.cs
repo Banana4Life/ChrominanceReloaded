@@ -35,8 +35,16 @@ public class ColorPicker : MonoBehaviour
                 
                 if (obj.GetComponent<Floater>())
                 {
-                    floater = Instantiate(floaterPrefab, transform);
-                    floater.GetComponent<Floater>().color = obj.GetComponent<Floater>().color;
+                    var baseController = FindObjectOfType<PlayerBaseController>();
+                    if (baseController.Take( obj.GetComponent<Floater>().color))
+                    {
+                        floater = Instantiate(floaterPrefab, transform);
+                        floater.GetComponent<Floater>().color = obj.GetComponent<Floater>().color;
+                    }
+                    else
+                    {
+                        // TODO DENIED!!!!
+                    }
                 }
             }
         }

@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             killSound.Play();
+            var baseController = FindObjectOfType<PlayerBaseController>();
+            baseController.AwardKill(color);
             Die();
         }
         else

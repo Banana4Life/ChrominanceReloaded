@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ColorVariant : MonoBehaviour
 {
+    public int colorId;
     public Color color;
     public Gradient gradient;
 

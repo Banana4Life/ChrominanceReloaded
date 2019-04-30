@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b500b43e88b74c2b2e8c9a1f2adc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorId: 1
   color: {r: 1, g: 0.08203983, b: 0, a: 1}
   gradient:
     serializedVersion: 2
