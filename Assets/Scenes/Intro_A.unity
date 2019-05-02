@@ -509,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 8453789470471529745, guid: 359d36d7963d98ce2bca7801ec649e42,
         type: 3}
       propertyPath: m_Text
-      value: "Hi! My name is Chrominance and I need your\x13 help!"
+      value: Hi! My name is Chrominance and I need your help!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 359d36d7963d98ce2bca7801ec649e42, type: 3}
