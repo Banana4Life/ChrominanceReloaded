@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +41,7 @@ public class GridController : MonoBehaviour
         if (recalcBorder)
         {
             bottomLeft = CellFromScreenCoord(0, 0);
-            topRight = CellFromScreenCoord(screenWidth, screenHeight);
+            topRight = CellFromScreenCoord(screenWidth - 1, screenHeight - 1);
         }
     }
 
